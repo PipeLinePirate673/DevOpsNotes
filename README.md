@@ -13,77 +13,28 @@ I don't want to just copy commands and forget them. The goal is to understand wh
 I'm going to follow this roadmap step by step and document everything as I learn.
 
 ### 1. Git
-- [ ] Git basics
-- [ ] Pull requests
-- [ ] Branching
-- [ ] Merging
 
 ### 2. Programming
-- [ ] Python
-- [ ] Go
-- [ ] JavaScript
 
 ### 3. Linux
-- [ ] Shell commands
-- [ ] File system
-- [ ] Networking
-- [ ] Virtualization
-- [ ] POSIX
 
-### 4. Networking & Security
-- [ ] OSI Model
-- [ ] DNS
-- [ ] HTTP
-- [ ] SSH
-- [ ] Security tools
+### 4. Networking 
 
 ### 5. Server Management
-- [ ] Reverse Proxy
-- [ ] Caching Server
-- [ ] Firewall
-- [ ] Web Server
 
 ### 6. Containers
-- [ ] Running containers
-- [ ] Dockerfiles
-- [ ] Networking
-- [ ] Docker Compose
 
 ### 7. Container Orchestration
-- [ ] Components
-- [ ] CLI
-- [ ] Namespaces
-- [ ] Administration
-- [ ] Deployments
 
 ### 8. Infrastructure as Code
-- [ ] Infrastructure provisioning
-- [ ] Configuration management
-- [ ] Service Mesh
 
 ### 9. CI/CD
-- [ ] Set up a server
-- [ ] Integration
-- [ ] Pipeline tools
 
 ### 10. Monitoring & Observability
-- [ ] Infrastructure monitoring
-- [ ] Application monitoring
-- [ ] Log management
-- [ ] OpenTelemetry
 
 ### 11. Cloud
-- [ ] IaaS / PaaS / SaaS
-- [ ] Availability
-- [ ] Management
-- [ ] Design and implementation
 
 ### 12. Software Engineering
-- [ ] Scrum
-- [ ] Backlog management
-- [ ] Built-in quality
-- [ ] Communication
-- [ ] Troubleshooting
 
 ---
 
@@ -101,13 +52,11 @@ Usually this means:
 - problems I had
 - how I fixed them
 - things I should remember
-- things I still don't fully understand
 
-I will try to explain things in my own words instead of just copying documentation.
 
 ---
 
-## 🧪 Learning by doing
+## 🧪 Learning 
 
 I want to learn mostly by actually doing things.
 
@@ -156,8 +105,6 @@ DevOpsNotes/
 └── Software-Engineering/
 ```
 
-I'm not going to worry too much about having a perfect structure from the beginning. I can reorganize it later if needed.
-
 ---
 
 ## 🎯 Goal
@@ -168,8 +115,6 @@ The goal is simple:
 
 I'm starting with the basics and working my way up.
 
-Linux → Networking → Docker → Kubernetes → IaC → CI/CD → Monitoring → Cloud
-
 This repository is basically my personal knowledge base and a record of what I've learned.
 
 ---
@@ -179,5 +124,3 @@ This repository is basically my personal knowledge base and a record of what I'v
 This is going to be a long-term project.
 
 I'll add notes as I learn new things and mark topics as completed when I feel comfortable with them.
-
-**Learn. Build. Break. Fix. Document. Repeat.**
