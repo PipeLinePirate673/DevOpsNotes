@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Git Basics.md",
+                "file": "Git/Git Basics.md",
                 "mode": "source",
                 "source": false
               },
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Git Basics.md",
+                "file": "Git/Git Basics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Git Basics.md",
+                "file": "Git/Git Basics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Git Basics.md",
+                "file": "Git/Git Basics.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -189,10 +189,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a14c7ace85cc79fa",
+  "active": "b960ced8f05fb3d6",
   "lastOpenFiles": [
     "Witaj.md",
-    "Git Basics.md",
+    "Git/Git Basics.md",
     "Git"
   ]
 }
