@@ -124,3 +124,12 @@ This repository is basically my personal knowledge base and a record of what I'v
 This is going to be a long-term project.
 
 I'll add notes as I learn new things and mark topics as completed when I feel comfortable with them.
+
+
+<p align="center">
+  <img src="https://github.com/milanm/DevOps-Roadmap/blob/master/DevOps%20Roadmap.png?raw=true" alt="DevOps Roadmap">
+</p>
+
+**https://github.com/milanm/DevOps-Roadmap**
+
+
