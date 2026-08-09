@@ -1,12 +1,10 @@
 # 🐍 Python for DevOps — Learning Roadmap
 
-The goal is not to learn every part of Python. I want to learn enough Python to use it as a **tool for DevOps automation** — working with Linux, servers, APIs, Docker, cloud and Kubernetes.
+I want to learn enough Python to use it as a **tool for DevOps automation** — working with Linux, servers, APIs, Docker, cloud and Kubernetes.
 
 ---
 
 ## 1. Python Basics
-
-First, I need to become comfortable with writing basic Python code.
 
 ### What to learn
 
@@ -31,13 +29,9 @@ for server in servers:
     print(f"Checking {server}")
 ```
 
-I don't need advanced Python yet. The goal is to **write simple scripts without constantly looking up the syntax**.
-
 ---
 
-## 2. Python + Linux ⭐
-
-This is where Python becomes really useful for DevOps.
+## 2. Python + Linux 
 
 I want to be able to use Python to interact with the Linux system and run commands automatically.
 
@@ -52,7 +46,7 @@ I want to be able to use Python to interact with the Linux system and run comman
 * Running Linux commands with `subprocess`
 * Working with paths using `pathlib`
 
-For example, Python should be able to run:
+For example:
 
 ```python
 import subprocess
@@ -79,15 +73,11 @@ Running services
 Uptime
 ```
 
-This is the type of automation I will actually use as a DevOps Engineer.
-
 ---
 
 ## 3. Files, Logs and Configuration
 
-DevOps involves working with a lot of files, configuration and logs.
-
-I need to learn how to read them, modify them and extract useful information.
+Need to learn how to read them, modify them and extract useful information.
 
 ### What to learn
 
@@ -100,7 +90,7 @@ I need to learn how to read them, modify them and extract useful information.
 * Environment variables
 * Basic log parsing
 
-For example, I should be able to take an Nginx log and find:
+For example:
 
 ```text
 Total requests: 1520
@@ -115,11 +105,9 @@ Build a **Log Analyzer** that reads a log file and creates a simple report.
 
 ---
 
-## 4. APIs and HTTP ⭐
+## 4. APIs and HTTP 
 
-A lot of DevOps tools communicate through APIs.
-
-I need to understand how HTTP and REST APIs work and how to use them from Python.
+Need to understand how HTTP and REST APIs work and how to use them from Python.
 
 ### What to learn
 
@@ -183,8 +171,6 @@ Build a **Server Management CLI** that combines some of the things learned in pr
 
 ## 6. SSH and Remote Automation
 
-As a DevOps Engineer, I won't always be working directly on the server.
-
 Python can connect to remote machines and execute commands.
 
 ### What to learn
@@ -219,7 +205,7 @@ Then display everything in one report.
 
 ---
 
-## 7. Python + Docker ⭐
+## 7. Python + Docker 
 
 Since Docker is an important part of DevOps, I want to be able to control Docker using Python.
 
@@ -284,7 +270,7 @@ This is especially important for scripts that will run automatically.
 
 ## 9. Testing
 
-I don't need to become a testing expert, but I should know how to make sure my automation actually works.
+I should know how to make sure my automation actually works.
 
 ### What to learn
 
@@ -300,8 +286,6 @@ For example:
 def test_check_server():
     assert check_server("web01") == "OK"
 ```
-
-The goal is simply to be able to test the important parts of my scripts.
 
 ---
 
@@ -374,7 +358,7 @@ Python shouldn't replace Terraform or Ansible. It should **work alongside them**
 
 ---
 
-## 12. Python + Kubernetes ☸️
+## 12. Python + Kubernetes 
 
 Only after learning the basics of Kubernetes should I start using Python with it.
 
@@ -444,7 +428,7 @@ Later, I can use Python for things like:
 
 ## 14. More Advanced Python
 
-Once I am comfortable with everything above, I can start learning more advanced Python features.
+I can start learning more advanced Python features.
 
 ### Useful topics
 
