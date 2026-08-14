@@ -10,13 +10,14 @@ The goal is to learn by building, breaking, fixing and documenting real systems.
 
 **Main purpose:** Docker, automation & learning
 
-| Component | Specification |
-|---|---|
-| **CPU** | Intel Core i3-6100T |
-| **RAM** | 10 GB DDR3L SO-DIMM 1600 MHz (8 GB + 2 GB) |
-| **GPU** | Intel HD Graphics 530 |
-| **Storage** | 256 GB SATA SSD |
-| **OS** | Linux |
+
+| Component   | Specification                              |
+| ----------- | ------------------------------------------ |
+| **CPU**     | Intel Core i3-6100T                        |
+| **RAM**     | 10 GB DDR3L SO-DIMM 1600 MHz (8 GB + 2 GB) |
+| **GPU**     | Intel HD Graphics 530                      |
+| **Storage** | 256 GB SATA SSD                            |
+| **OS**      | Linux                                      |
 
 ### Main services
 
@@ -39,14 +40,15 @@ The Mini PC is my main **lab machine**. I use it to experiment with Docker, Linu
 
 **Main purpose:** Storage & media
 
-| Component | Specification |
-|---|---|
-| **CPU** | Intel Core i5 |
-| **RAM** | 12 GB DDR3 |
-| **GPU** | NVIDIA GeForce GT 720 |
-| **Storage** | 2 × 1 TB HDD + 500 GB HDD |
-| **System Drive** | 120 GB SSD |
-| **OS** | TrueNAS |
+
+| Component        | Specification              |
+| ---------------- | -------------------------- |
+| **CPU**          | Intel Core i5              |
+| **RAM**          | 12 GB DDR3                 |
+| **GPU**          | NVIDIA GeForce GT 720      |
+| **Storage**      | 2 × 1 TB HDD + 500 GB HDD |
+| **System Drive** | 120 GB SSD                 |
+| **OS**           | TrueNAS                    |
 
 ### Main services
 
@@ -62,17 +64,18 @@ This machine is focused on **storage and media services**. It handles my persona
 
 **Main purpose:** Development & administration
 
-| Component | Specification |
-|---|---|
-| **Model** | ASUS Zenbook UX3402ZA |
-| **CPU** | Intel Core i5-1240P |
-| **GPU** | Intel Iris Xe Graphics |
-| **RAM** | 16 GB DDR5 |
-| **Storage** | 512 GB NVMe SSD |
-| **Display** | 14" 1920×1200 |
-| **OS** | Ubuntu 26.04 LTS |
-| **Desktop** | GNOME 50.1 |
-| **Kernel** | Linux 7.0.29-generic |
+
+| Component   | Specification          |
+| ----------- | ---------------------- |
+| **Model**   | ASUS Zenbook UX3402ZA  |
+| **CPU**     | Intel Core i5-1240P    |
+| **GPU**     | Intel Iris Xe Graphics |
+| **RAM**     | 16 GB DDR5             |
+| **Storage** | 512 GB NVMe SSD        |
+| **Display** | 14" 1920×1200         |
+| **OS**      | Ubuntu 26.04 LTS       |
+| **Desktop** | GNOME 50.1             |
+| **Kernel**  | Linux 7.0.29-generic   |
 
 ### Main uses
 
@@ -150,40 +153,3 @@ Things I practice in my homelab:
 - 🛠️ Troubleshooting
 
 The hardware isn't powerful — and that's intentional.
-
-> **The goal isn't to build a powerful server.  
-> The goal is to learn how to build and operate infrastructure.** 🚀
-
----
-
-## 🚧 Current Homelab Roadmap
-
-### Phase 1 — Foundation
-- [x] TrueNAS storage server
-- [x] Jellyfin
-- [x] Immich
-- [x] Mini PC
-- [x] Docker environment
-- [x] Linux administration
-
-### Phase 2 — DevOps Lab
-- [ ] Docker Compose projects
-- [ ] Gitea
-- [ ] Reverse Proxy
-- [ ] Monitoring
-- [ ] Centralized logging
-- [ ] Automated backups
-
-### Phase 3 — Networking & Automation
-- [ ] Pi-hole / AdGuard
-- [ ] DNS management
-- [ ] Network monitoring
-- [ ] Python automation
-- [ ] Bash automation
-
-### Phase 4 — Advanced Infrastructure
-- [ ] CI/CD
-- [ ] Infrastructure as Code
-- [ ] Virtualization
-- [ ] Kubernetes
-- [ ] Cloud integration
