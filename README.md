@@ -14,11 +14,17 @@ I'm going to follow this roadmap step by step and document everything as I learn
 
 ### 1. Git
 
+[Git Practice Website](https://github.com/PipeLinePirate673/Git-Practice-Website)
+
+My Git learning repository. I keep all my Git exercises here, explained step by step — from basic commands to branches, merging, rebasing, pull requests and conflicts.
+
+https://github.com/PipeLinePirate673/Git-Practice-Website
+
 ### 2. Programming
 
 ### 3. Linux
 
-### 4. Networking 
+### 4. Networking
 
 ### 5. Server Management
 
@@ -53,10 +59,9 @@ Usually this means:
 - how I fixed them
 - things I should remember
 
-
 ---
 
-## 🧪 Learning 
+## 🧪 Learning
 
 I want to learn mostly by actually doing things.
 
@@ -125,11 +130,8 @@ This is going to be a long-term project.
 
 I'll add notes as I learn new things and mark topics as completed when I feel comfortable with them.
 
-
 <p align="center">
   <img src="https://github.com/milanm/DevOps-Roadmap/blob/master/DevOps%20Roadmap.png?raw=true" alt="DevOps Roadmap">
 </p>
 
 **https://github.com/milanm/DevOps-Roadmap**
-
-
