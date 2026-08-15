@@ -18,7 +18,6 @@ I'm going to follow this roadmap step by step and document everything as I learn
 
 My Git learning repository. I keep all my Git exercises here, explained step by step — from basic commands to branches, merging, rebasing, pull requests and conflicts.
 
-https://github.com/PipeLinePirate673/Git-Practice-Website
 
 ### 2. Programming
 
