@@ -163,7 +163,7 @@ From different directories:
 
 ## Exercise 8 — Reading files
 
-Create a file called: 
+Create a file called:
 
 ```text
 notes.txt
@@ -285,6 +285,18 @@ Then find and explore:
 
 For each directory, try to understand what kind of files or information you can find there.
 
+
+
+1. /etc - System configuration files and scripts
+2. /var - contains variable data like system logging files, files, temporary files etc.
+3. /tmp - Mostly contains temporary files.
+4. /usr - it contains all the user binaries, their documentation, libraries, header files, etc.
+5. /opt - This directory is reserved for all the software and add-on packages
+6. /dev - contains device files that represent hardware and virtual devices used by the system, such as disks, partitions, terminals, USB devices, and input devices.
+7. /proc - contains virtual files that provide information about running processes and the current state of the Linux kernel and system.
+8. /home - contains the personal directories and files of the system's users.
+
+
 Use:
 
 ```bash
@@ -298,6 +310,7 @@ ls -la
 ```
 
 ---
+
 
 ## Exercise 12 — sudo
 
@@ -319,7 +332,7 @@ sudo apt update
 
 ### Goal
 
-Understand why some commands require elevated privileges and why `sudo` is used.
+Understand why some commands require elevated privileges and why `sudo` is used. ✅
 
 ---
 
@@ -342,16 +355,45 @@ linux-challenge/
 
 Then:
 
-1. Navigate into `linux-challenge`.
-2. Create the required directories.
-3. Create both files inside `documents`.
-4. Add some text to `notes.txt`.
-5. Display the contents of `notes.txt`.
-6. Copy `notes.txt` into `backup`.
-7. Rename `todo.txt` to `tasks.txt`.
-8. Move `tasks.txt` into `backup`.
-9. Create a temporary file inside `temporary`.
-10. Remove the temporary file.
-11. Display the complete directory structure using `ls -la`.
-12. Check your current location with `pwd`.
-13. Go back to your home directory.
+1. Navigate into `linux-challenge`. ✅
+
+   1. `cd linux-challenge`
+2. Create the required directories. ✅
+
+   1. `mkdir documents backup temporary`
+3. Create both files inside `documents`. ✅
+
+   1. `cd documents`
+   2. `nano notes.txt todo.txt`
+4. Add some text to `notes.txt`.  ✅
+
+   1. `vim notes.txt`
+5. Display the contents of `notes.txt`. ✅
+
+   1. `cat notes.txt`
+6. Copy `notes.txt` into `backup`. ✅
+
+   1. `cp notes.txt ../backup`
+7. Rename `todo.txt` to `tasks.txt`. ✅
+
+   1. `mv todo.txt tasks.txt`
+8. Move `tasks.txt` into `backup`. ✅
+
+   1. `mv tasks.txt ../backup`
+9. Create a temporary file inside `temporary`. ✅
+
+   1. `cd temporary`
+   2. `nano temp.txt`
+10. Remove the temporary file. ✅
+
+    1. `rm temp.txt`
+11. Display the complete directory structure using `ls -la`. ✅
+
+    1. `ls -la`
+    2. * It also depend what directory You're in. If we go back to main `linux-challenge` we can use `ls -la <dir_name>` or simply if we got `tree` installed use `tree -a`
+12. Check your current location with `pwd`. ✅
+
+    1. `pwd`
+13. Go back to your home directory. ✅
+
+    1. `cd ~`
