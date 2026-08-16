@@ -16,8 +16,9 @@ linux-practice/
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -44,8 +45,9 @@ linux-practice/
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -63,8 +65,9 @@ projects/
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -82,8 +85,9 @@ The original `projects` directory must remain unchanged.
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -109,8 +113,9 @@ bash
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -128,8 +133,9 @@ Make sure it is not visible with a normal directory listing but can still be fou
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -148,8 +154,9 @@ Search the entire `linux-practice` directory for files ending in `.txt`.
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -167,8 +174,9 @@ Find out:
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -186,8 +194,9 @@ Identify which directory uses the most space.
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -204,8 +213,9 @@ Identify:
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -223,8 +233,9 @@ The rest of the project must remain untouched.
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -242,8 +253,9 @@ Remove it afterwards.
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -276,8 +288,9 @@ Build this structure using the files and directories you already created during 
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```
+```text
 
+```
 
 ---
 
@@ -295,5 +308,7 @@ Check that:
 - the directory structure matches the expected result
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
+
+```text
 
 ```
