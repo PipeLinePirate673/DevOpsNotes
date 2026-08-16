@@ -163,7 +163,7 @@ From different directories:
 
 ## Exercise 8 — Reading files
 
-Create a file called:
+Create a file called: 
 
 ```text
 notes.txt
@@ -181,10 +181,14 @@ The terminal is one of the main tools I use.
 
 ### Task
 
-1. Display the entire file using `cat`.
-2. Display the file using `less`.
-3. Display the first line using `head`.
-4. Display the last line using `tail`.
+1. Display the entire file using `cat`.  ✅
+   1. `cat notes.txt`
+2. Display the file using `less`. ✅
+   1. `less notes.txt`
+3. Display the first line using `head`. ✅
+   1. `head -n 1 notes.txt`
+4. Display the last line using `tail`. ✅
+   1. `tail -n 1 notes.txt`
 
 ---
 
@@ -194,10 +198,18 @@ The terminal is one of the main tools I use.
 
 Without searching the internet:
 
-1. Find the manual for `ls`.
-2. Find the manual for `mkdir`.
-3. Find the help information for `cp`.
-4. Find the help information for `rm`.
+1. Find the manual for `ls`. ✅
+   1. `man ls`
+   2. `ls --help`
+2. Find the manual for `mkdir`. ✅
+   1. `man mkdir`
+   2. `mkdir --help`
+3. Find the help information for `cp`. ✅
+   1. `man cp`
+   2. `cp --help`
+4. Find the help information for `rm`. ✅
+   1. `man rm`
+   2. `rm --help`
 
 Use:
 
@@ -219,11 +231,18 @@ This exercise is for Debian/Ubuntu systems.
 
 ### Task
 
-1. Update the package list.
-2. Check whether `curl` is installed.
-3. Install `curl` if it is not installed.
-4. Check the installed version.
-5. Remove `curl`.
+1. Update the package list. ✅
+   1. `sudo apt update`
+2. Check whether `curl` is installed. ✅
+   1. `curl --version`
+   2. `which curl`
+3. Install `curl` if it is not installed. ✅
+   1. `apt install curl`
+   2. `sudo apt install curl`
+4. Check the installed version. ✅
+   1. `curl --version`
+5. Remove `curl`. ✅
+   1. `sudo apt remove curl`
 
 Commands you may need:
 
