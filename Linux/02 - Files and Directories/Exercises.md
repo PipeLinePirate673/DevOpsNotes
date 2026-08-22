@@ -340,7 +340,7 @@ find . -type d
 
 ## Exercise 1 — Project Structure ✅
 
-Create a directory named `linux-practice`. 
+Create a directory named `linux-practice`.
 
 Inside it, create the following structure:
 
@@ -580,7 +580,7 @@ Remove it afterwards.
 
 ---
 
-## Exercise 13 — Directory Structure
+## Exercise 13 — Directory Structure ✅
 
 Create the following final structure:
 
@@ -609,13 +609,11 @@ Build this structure using the files and directories you already created during 
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```text
-
-```
+`dominik@Zenbook:~/Pulpit/LinuxBasicsExercises/linux-practice$ tree -a . ├── backups │   └── projects │       └── linux │           ├── directories │           └── scripts ├── .config ├── notes │   └── notes.txt ├── projects │   └── linux │       ├── directories │       └── scripts ├── scripts │   └── bash └── tasks.txt`
 
 ---
 
-## Exercise 14 — Final Verification
+## Exercise 14 — Final Verification ✅
 
 Verify the final structure of `linux-practice`.
 
@@ -630,6 +628,4 @@ Check that:
 
 ### PLACE FOR YOUR NOTES/COMMAND LIST
 
-```text
-
-```
+`This Exercise is a little bit messy and not good made. I have to rewrite it in near feature.`
