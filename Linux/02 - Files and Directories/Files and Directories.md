@@ -292,7 +292,76 @@ points to:
 
 ---
 
-## 10. `.` --- Current Directory
+## 10. `pwd` --- Print Working Directory
+
+The `pwd` command shows your current working directory.
+
+```bash
+pwd
+```
+
+Example:
+
+```text
+/home/dominik/Documents
+```
+
+This is especially useful when working with relative paths because it
+shows exactly where you currently are.
+
+---
+
+## 11. `cd` --- Change Directory
+
+The `cd` command is used to move between directories.
+
+Enter a directory:
+
+```bash
+cd Documents
+```
+
+Use an absolute path:
+
+```bash
+cd /var/log
+```
+
+Go to the parent directory:
+
+```bash
+cd ..
+```
+
+Go to your home directory:
+
+```bash
+cd ~
+```
+
+Return to the previous directory:
+
+```bash
+cd -
+```
+
+For example:
+
+```bash
+cd /var/log
+cd /tmp
+cd -
+```
+
+The last command returns you to:
+
+```text
+/var/log
+```
+
+---
+
+## 12. `.` --- Current Directory
 
 The dot:
 
@@ -315,7 +384,7 @@ This means:
 
 ---
 
-## 11. `..` --- Parent Directory
+## 13. `..` --- Parent Directory
 
 The double dot:
 
@@ -356,7 +425,7 @@ This means:
 
 ---
 
-## 12. `~` --- Home Directory
+## 14. `~` --- Home Directory
 
 ```bash
 cd ~
@@ -378,7 +447,7 @@ For example:
 
 ---
 
-## 13. `file` --- Check File Type
+## 15. `file` --- Check File Type
 
 You can use `file` to find out what type of file something actually is.
 
@@ -408,7 +477,7 @@ Linux does not rely only on file extensions to determine what a file is.
 
 ---
 
-## 14. `stat` --- Detailed File Information
+## 16. `stat` --- Detailed File Information
 
 ```bash
 stat notes.txt
@@ -416,19 +485,19 @@ stat notes.txt
 
 This provides information such as:
 
-- file size
-- permissions
-- owner
-- timestamps
-- inode
-- access information
+* file size
+* permissions
+* owner
+* timestamps
+* inode
+* access information
 
 You will use some of this information later when learning **file
 permissions**.
 
 ---
 
-## 15. Hidden Files
+## 17. Hidden Files
 
 In Linux, files beginning with `.` are hidden.
 
@@ -456,7 +525,7 @@ ls -a
 
 ---
 
-## 16. `tree` --- Display Directory Structure
+## 18. `tree` --- Display Directory Structure
 
 If `tree` is installed:
 
@@ -486,7 +555,7 @@ tree -a
 
 ---
 
-## 17. `find` --- Search for Files
+## 19. `find` --- Search for Files
 
 Search for `notes.txt` starting from the current directory:
 
@@ -517,7 +586,7 @@ administration.
 
 ---
 
-## 18. `du` --- Directory and File Sizes
+## 20. `du` --- Directory and File Sizes
 
 Check directory sizes:
 
@@ -542,7 +611,7 @@ Example:
 
 ---
 
-## 19. `df` --- Disk Space
+## 21. `df` --- Disk Space
 
 Check filesystem disk usage:
 
@@ -567,6 +636,44 @@ df → how much space is available on a filesystem
 
 ---
 
+## 22. `ln` --- Create Links
+
+Linux allows you to create links to files.
+
+There are two main types:
+
+* **hard links**
+* **symbolic links (symlinks)**
+
+### Hard link
+
+```bash
+ln file.txt hardlink.txt
+```
+
+A hard link points to the same underlying file data.
+
+### Symbolic link
+
+```bash
+ln -s file.txt symlink.txt
+```
+
+A symbolic link works like a reference or shortcut to another file or
+directory.
+
+For example:
+
+```text
+file.txt
+symlink.txt -> file.txt
+```
+
+You will learn more about links and inodes later when working with
+filesystems and permissions.
+
+---
+
 # Four Path Symbols to Remember
 
 ```text
@@ -574,4 +681,7 @@ df → how much space is available on a filesystem
 ~       → home directory
 .       → current directory
 ..      → parent directory
+```
+
+
 ```
