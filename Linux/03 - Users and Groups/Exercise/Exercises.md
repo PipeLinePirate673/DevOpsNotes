@@ -1,7 +1,7 @@
 # Linux — Users & Groups Exercises
 
 > **Goal:** Practice Linux user and group management, `sudo`, account inspection, and service accounts.
->
+> 
 > **Rule:** Try to solve each exercise yourself before checking the commands you already know.
 
 ---
@@ -24,15 +24,6 @@ Find out:
 3. Find all groups you belong to.
 4. Find your current shell.
 
-### Commands to use
-
-```bash
-whoami
-id
-groups
-echo $SHELL
-```
-
 ---
 
 ## Exercise 2 — Inspect Your User
@@ -48,14 +39,6 @@ Find your:
 - GID,
 - home directory,
 - login shell.
-
-### Hint
-
-```bash
-getent passwd YOUR_USERNAME
-```
-
-Then identify what each field means.
 
 ---
 
@@ -74,14 +57,6 @@ devuser
 3. Display the user's UID and GID.
 4. Display the user's home directory and shell.
 
-### Useful commands
-
-```bash
-sudo adduser devuser
-id devuser
-getent passwd devuser
-```
-
 ---
 
 ## Exercise 4 — Create a Development Group
@@ -97,13 +72,6 @@ developers
 1. Create the group.
 2. Verify that it exists.
 3. Display information about the group.
-
-### Useful commands
-
-```bash
-sudo groupadd developers
-getent group developers
-```
 
 ---
 
@@ -127,16 +95,7 @@ developers
 2. Verify the membership.
 3. Check the user's groups using both `groups` and `id`.
 
-### Useful commands
-
-```bash
-sudo usermod -aG developers devuser
-
-groups devuser
-id devuser
-```
-
-> **Important:** Remember `-aG`. The `-a` means **append**.
+### 
 
 ---
 
@@ -186,14 +145,7 @@ dockerusers
 2. Verify that the membership is gone.
 3. Make sure `devuser` is still a member of `developers`.
 
-### Useful commands
 
-```bash
-sudo deluser devuser dockerusers
-
-groups devuser
-id devuser
-```
 
 ---
 
@@ -249,19 +201,7 @@ devuser
 2. Verify the result.
 3. Check whether the user still belongs to their supplementary groups.
 
-### Useful command
-
-```bash
-sudo usermod -g developers devuser
-```
-
-Then:
-
-```bash
-id devuser
-```
-
-> **Important:** `-g` changes the **primary group**. It is different from `-aG`.
+### 
 
 ---
 
@@ -277,15 +217,7 @@ Practice password management with `devuser`.
 4. Unlock the account.
 5. Check the status again.
 
-### Useful commands
-
-```bash
-sudo passwd devuser
-sudo passwd -l devuser
-sudo passwd -S devuser
-sudo passwd -u devuser
-sudo passwd -S devuser
-```
+### 
 
 ---
 
@@ -302,14 +234,7 @@ Find:
 3. your own user
 4. the `sudo` group, if it exists
 
-### Useful commands
-
-```bash
-getent passwd devuser
-getent group developers
-getent passwd YOUR_USERNAME
-getent group sudo
-```
+### 
 
 ---
 
@@ -423,14 +348,7 @@ id
 
 as `devuser`.
 
-### Useful commands
-
-```bash
-sudo -u devuser whoami
-sudo -u devuser id
-```
-
-### Expected result
+### ### Expected result
 
 The commands should report `devuser`, not your normal username.
 
@@ -447,27 +365,7 @@ Switch to `devuser`.
 3. Check your groups.
 4. Return to your original user.
 
-### Useful commands
-
-```bash
-su - devuser
-```
-
-Then:
-
-```bash
-whoami
-id
-groups
-```
-
-Return to the previous shell:
-
-```bash
-exit
-```
-
----
+### ---
 
 ## Exercise 17 — Root Shell
 
@@ -480,16 +378,7 @@ Practice opening and leaving a root shell.
 3. Run `id`.
 4. Exit the root shell.
 
-### Commands
-
-```bash
-sudo -i
-whoami
-id
-exit
-```
-
-> Avoid using a root shell when it is not necessary.
+### 
 
 ---
 
@@ -594,11 +483,11 @@ backupusers
 
 ### Group membership
 
-| User | developers | dockerusers | backupusers |
-|---|---:|---:|---:|
-| `alice` | ✓ | ✓ | ✗ |
-| `bob` | ✓ | ✗ | ✓ |
-| `charlie` | ✓ | ✓ | ✓ |
+| User      | developers | dockerusers | backupusers |
+| --------- | ----------:| -----------:| -----------:|
+| `alice`   | ✓          | ✓           | ✗           |
+| `bob`     | ✓          | ✗           | ✓           |
+| `charlie` | ✓          | ✓           | ✓           |
 
 ### Tasks
 
