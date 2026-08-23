@@ -1,12 +1,8 @@
 # Linux — Users & Groups Exercises
 
-> **Goal:** Practice Linux user and group management, `sudo`, account inspection, and service accounts.
-> 
-> **Rule:** Try to solve each exercise yourself before checking the commands you already know.
-
 ---
 
-## Exercise 1 — Identify Yourself
+## Exercise 1 — Identify Yourself ✅
 
 Find out:
 
@@ -19,14 +15,18 @@ Find out:
 
 ### Tasks
 
-1. Find your username.
-2. Find your UID and GID.
-3. Find all groups you belong to.
-4. Find your current shell.
+1. Find your username. ✅
+   1. `whoami`
+2. Find your UID and GID. ✅
+   1. `id`
+3. Find all groups you belong to. ✅
+   1. `groups dominik`
+4. Find your current shell. ✅
+   1. `echo $SHELL`
 
 ---
 
-## Exercise 2 — Inspect Your User
+## Exercise 2 — Inspect Your User ✅
 
 Use the system user database to inspect your account.
 
@@ -34,15 +34,20 @@ Use the system user database to inspect your account.
 
 Find your:
 
-- username,
-- UID,
-- GID,
-- home directory,
-- login shell.
+- username ✅
+  - `whoami`
+- UID ✅
+  - `id` or `id | grep uid`
+- GID ✅
+  - `id` od `id | grep gid`
+- home directory ✅
+  - `pwd`
+- login shell ✅
+  - `echo $SHELL`
 
 ---
 
-## Exercise 3 — Create a User
+## Exercise 3 — Create a User ✅
 
 Create a new user called:
 
@@ -52,14 +57,18 @@ devuser
 
 ### Tasks
 
-1. Create the user.
-2. Check whether the user exists.
-3. Display the user's UID and GID.
-4. Display the user's home directory and shell.
+1. Create the user. ✅
+   1. `sudo adduser devuser`
+2. Check whether the user exists. ✅
+   1. `getent passwd devuser`
+3. Display the user's UID and GID. ✅
+   1.    `id devuser`
+4. Display the user's home directory and shell. ✅
+   1. `getent passwd devuser`
 
 ---
 
-## Exercise 4 — Create a Development Group
+## Exercise 4 — Create a Development Group ✅
 
 Create a group called:
 
@@ -69,13 +78,16 @@ developers
 
 ### Tasks
 
-1. Create the group.
-2. Verify that it exists.
-3. Display information about the group.
+1. Create the group. ✅
+   1. `sudo groupadd developers`
+2. Verify that it exists. ✅
+   1. `getent group | grep developers`
+3. Display information about the group. ✅
+   1. `getent group developers`
 
 ---
 
-## Exercise 5 — Add a User to a Group
+## Exercise 5 — Add a User to a Group ✅
 
 Add:
 
@@ -91,15 +103,18 @@ developers
 
 ### Tasks
 
-1. Add the user to the group.
-2. Verify the membership.
-3. Check the user's groups using both `groups` and `id`.
+1. Add the user to the group. ✅
+   1. `sudo gpasswd -a devuser developers`
+2. Verify the membership. ✅
+   1. `getent group developers`
+3. Check the user's groups using both `groups` and `id`. ✅
+   1.  `groups devuser; id devuser`
 
 ### 
 
 ---
 
-## Exercise 6 — Create Multiple Groups
+## Exercise 6 — Create Multiple Groups ✅
 
 Create these groups:
 
@@ -111,12 +126,16 @@ backupusers
 
 ### Tasks
 
-1. Create all three groups.
-2. Add `devuser` to:
-   - `developers`
-   - `dockerusers`
-3. Do **not** add `devuser` to `backupusers`.
-4. Verify the final group membership.
+1. Create all three groups.  ✅
+   1. `sudo groupadd dockerusers; sudo groupadd backupusers`
+2. Add `devuser` to: 
+   - `developers` ✅
+     - `sudo gpasswd -a devuser developers`
+   - `dockerusers` ✅
+     - `sudo gpasswd -a devuser dockerusers`
+3. Do **not** add `devuser` to `backupusers`. ✅
+4. Verify the final group membership. ✅
+   1. `groups devuser`
 
 ### Goal
 
@@ -131,7 +150,7 @@ devuser
 
 ---
 
-## Exercise 7 — Remove a User from a Group
+## Exercise 7 — Remove a User from a Group ✅
 
 Remove `devuser` from:
 
@@ -141,11 +160,12 @@ dockerusers
 
 ### Tasks
 
-1. Remove the user from the group.
-2. Verify that the membership is gone.
-3. Make sure `devuser` is still a member of `developers`.
-
-
+1. Remove the user from the group. ✅
+   1. `sudo deluser devuser dockerusers`
+2. Verify that the membership is gone. ✅
+   1. `groups devuser`
+3. Make sure `devuser` is still a member of `developers`. ✅
+   1. `groups devuser`
 
 ---
 
