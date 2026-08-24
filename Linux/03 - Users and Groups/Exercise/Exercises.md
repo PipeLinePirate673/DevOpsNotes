@@ -62,7 +62,7 @@ devuser
 2. Check whether the user exists. ✅
    1. `getent passwd devuser`
 3. Display the user's UID and GID. ✅
-   1.    `id devuser`
+   1. `id devuser`
 4. Display the user's home directory and shell. ✅
    1. `getent passwd devuser`
 
@@ -108,7 +108,7 @@ developers
 2. Verify the membership. ✅
    1. `getent group developers`
 3. Check the user's groups using both `groups` and `id`. ✅
-   1.  `groups devuser; id devuser`
+   1. `groups devuser; id devuser`
 
 ### 
 
@@ -169,7 +169,7 @@ dockerusers
 
 ---
 
-## Exercise 8 — Primary vs Supplementary Groups
+## Exercise 8 — Primary vs Supplementary Groups ✅
 
 Use `id` to investigate the difference between:
 
@@ -178,30 +178,27 @@ Use `id` to investigate the difference between:
 
 ### Tasks
 
-1. Check the primary GID of `devuser`.
-2. Check the supplementary groups.
+1. Check the primary GID of `devuser`. ✅
+   1. `id devuser`
+2. Check the supplementary groups. 
+   1. `id devuser`
 3. Explain the difference in your own words.
-
-### Command
-
-```bash
-id devuser
-```
+   1. `The primary group is the main group for a user. A user can have only one primary group. Supplementary groups are additional groups that a user can belong to. A user can belong to multiple supplementary groups and get additional permissions from them.`
 
 ### Expected format
 
 Write your answer in your notes:
 
 ```text
-UID:
-Primary GID:
-Primary group:
-Supplementary groups:
+UID: 1001(devuser)
+Primary GID: 1001(devuser)
+Primary group: 1001(devuser)
+Supplementary groups: 100(users), 1002(developers), 1003(dockerusers)
 ```
 
 ---
 
-## Exercise 9 — Change the Primary Group
+## Exercise 9 — Change the Primary Group ✅
 
 Make:
 
@@ -217,31 +214,44 @@ devuser
 
 ### Tasks
 
-1. Change the primary group.
-2. Verify the result.
-3. Check whether the user still belongs to their supplementary groups.
+1. Change the primary group. ✅
+   1. `sudo usermod -g developers devuser`
+2. Verify the result. ✅
+   1. `id devuser`
+      1. `uid=1001(devuser) gid=1002(developers) groups=1002(developers),100(users), 1003(dockerusers)`
+3. Check whether the user still belongs to their supplementary groups. ✅
+   1. `groups devuser`
 
 ### 
 
 ---
 
-## Exercise 10 — Password Management
+## Exercise 10 — Password Management ✅
 
 Practice password management with `devuser`.
 
 ### Tasks
 
-1. Set a password for `devuser`.
-2. Lock the account.
-3. Check the account status.
-4. Unlock the account.
-5. Check the status again.
+1. Set a password for `devuser`. ✅
+   1. `sudo passwd devuser`
+2. Lock the account. ✅
+   1. `sudo passwd -l devuser`
+3. Check the account status. ✅
+   1. `sudo passwd -S devuser`
+      1. `devuser L 2026-08-24 0 99999 7 -1`
+         1. `L - means its locked`
+4. Unlock the account. ✅
+   1. `sudo passwd -u devuser`
+5. Check the status again. ✅
+   1. `sudo passwd -S devuser`
+      1. `devuser P 2026-08-24 0 99999 7 -1`
+         1. `P - meas account is active and have set password.`
 
 ### 
 
 ---
 
-## Exercise 11 — Account Information
+## Exercise 11 — Account Information ✅
 
 Use `getent` to inspect users and groups.
 
@@ -249,16 +259,21 @@ Use `getent` to inspect users and groups.
 
 Find:
 
-1. `devuser`
-2. `developers`
-3. your own user
-4. the `sudo` group, if it exists
+1. `devuser`   ✅
+   1. `getent passwd devuser`
+2. `developers` ✅
+   1. `getent group developers`
+3. your own user ✅
+   1. `getnet passwd "$(whoami)"`
+      1. `Linux will first check who the user is and then check account`
+4. the `sudo` group, if it exists ✅
+   1. `getent group sudo`
 
 ### 
 
 ---
 
-## Exercise 12 — Inspect `/etc/passwd`
+## Exercise 12 — Inspect `/etc/passwd` ✅
 
 Use:
 
@@ -268,7 +283,7 @@ cat /etc/passwd
 
 ### Tasks
 
-Find your own user and identify:
+Find your own user and identify: ✅
 
 ```text
 username
@@ -279,17 +294,35 @@ home directory
 shell
 ```
 
+```bash
+cat etc/passwd | grep "$(whoami)" -> dominik:x:1000:1000:Dominik J:/home/dominik:/bin/bash
+
+username: dominik
+password: x
+UID: 1000
+GID: 1000
+Description: Dominik J
+home directory: /home/dominik
+shell: /bin/bash
+
+
+```
+
 ### Bonus
 
-Find `devuser`:
+Find `devuser`: ✅
 
 ```bash
-grep '^devuser:' /etc/passwd
+grep '^devuser:' /etc/passwd 
+
+
+devuser:x:1001:1002:Dominik Dev,1,1,1,1:/home/devuser:/bin/bash
+
 ```
 
 ---
 
-## Exercise 13 — Inspect `/etc/group`
+## Exercise 13 — Inspect `/etc/group` ✅
 
 Use:
 
@@ -314,6 +347,19 @@ For each group, identify:
 - GID,
 - members.
 
+
+
+```bash
+cat /etc/group | grep developers;  cat /etc/group | grep docker; cat /etc/group | grep sudo
+
+developers:x:1002:devuser
+
+docker:x:972:
+
+sudo:x:27:dominik
+
+```
+
 ### Bonus
 
 Query them directly:
@@ -326,7 +372,7 @@ getent group sudo
 
 ---
 
-## Exercise 14 — `sudo` Permissions
+## Exercise 14 — `sudo` Permissions ✅
 
 Check what your current user is allowed to do with `sudo`.
 
@@ -338,15 +384,19 @@ sudo -l
 
 ### Tasks
 
-1. Run the command.
-2. Identify whether your user has administrative privileges.
-3. Find out which commands you are allowed to run with `sudo`.
+1. Run the command. ✅
+   1. `sudo -l`
+2. Identify whether your user has administrative privileges. ✅
+   1. `User dominik may run the following commands on Zenbook:
+          (ALL : ALL) ALL`
+3. Find out which commands you are allowed to run with `sudo`. ✅
+   1. `(ALL : ALL) ALL`
 
 > Do not modify the sudo configuration for this exercise.
 
 ---
 
-## Exercise 15 — Run a Command as Another User
+## Exercise 15 — Run a Command as Another User ✅
 
 Use `sudo` to run commands as `devuser`.
 
@@ -360,6 +410,12 @@ whoami
 
 as `devuser`.
 
+```bash
+sudo -u devuser whoami
+```
+
+
+
 Then run:
 
 ```bash
@@ -368,22 +424,36 @@ id
 
 as `devuser`.
 
+
+
+```bash
+sudo -u devuser id
+
+
+uid=1001(devuser) gid=1002(developers) groups=1002(developers),100(users),1003(dockerusers)
+
+```
+
 ### ### Expected result
 
-The commands should report `devuser`, not your normal username.
+The commands should report `devuser`, not your normal username. ✅
 
 ---
 
-## Exercise 16 — Switch Users
+## Exercise 16 — Switch Users ✅
 
 Switch to `devuser`.
 
 ### Tasks
 
-1. Switch to the user.
-2. Confirm who you are.
-3. Check your groups.
-4. Return to your original user.
+1. Switch to the user. ✅
+   1. `sudo - devuser`
+2. Confirm who you are. ✅
+   1. `whoami`
+3. Check your groups.  ✅
+   1. `groups "$(whoami)"`
+4. Return to your original user. ✅
+   1. `sudo - dominik`
 
 ### ---
 
