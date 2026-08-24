@@ -457,22 +457,26 @@ Switch to `devuser`.
 
 ### ---
 
-## Exercise 17 — Root Shell
+## Exercise 17 — Root Shell ✅
 
 Practice opening and leaving a root shell.
 
 ### Tasks
 
-1. Open a root shell.
-2. Verify that you are root.
-3. Run `id`.
-4. Exit the root shell.
+1. Open a root shell. ✅
+   1. `sudo -i`
+2. Verify that you are root. ✅
+   1. `whoami`
+3. Run `id`. ✅
+   1. `id`
+4. Exit the root shell. ✅
+   1. `exit`
 
 ### 
 
 ---
 
-## Exercise 18 — Logged-in Users
+## Exercise 18 — Logged-in Users ✅
 
 Find out who is currently logged into the system.
 
@@ -499,6 +503,22 @@ users
 ### Question
 
 What is the difference between the information displayed by these commands?
+
+```bash
+- who → shows who is currently logged in, their terminal, and login source.
+- w → shows the same information but with more details, including what users are currently doing and system load.
+- users → shows only the usernames of currently logged-in users.
+
+In short:
+
+users → WHO
+who → WHO + WHERE FROM
+w → WHO + WHERE FROM + WHAT THEY ARE DOING
+```
+
+
+
+
 
 ---
 
@@ -545,105 +565,19 @@ getent passwd USERNAME
 
 Why is it safer for a service to run under a dedicated user instead of `root`?
 
----
 
-# Mini Project — Linux Team Setup
-
-Now combine everything you have learned.
-
-Imagine you are setting up a small Linux server for a development team.
-
-## Requirements
-
-Create these users:
-
-```text
-alice
-bob
-charlie
-```
-
-Create these groups:
-
-```text
-developers
-dockerusers
-backupusers
-```
-
-### Group membership
-
-| User      | developers | dockerusers | backupusers |
-| --------- | ----------:| -----------:| -----------:|
-| `alice`   | ✓          | ✓           | ✗           |
-| `bob`     | ✓          | ✗           | ✓           |
-| `charlie` | ✓          | ✓           | ✓           |
-
-### Tasks
-
-1. Create all three users.
-2. Create all three groups.
-3. Add each user to the correct groups.
-4. Verify every user's membership with `id`.
-5. Verify the groups with `getent group`.
-6. Set passwords for all three users.
-7. Lock `charlie`.
-8. Verify `charlie`'s account status.
-9. Unlock `charlie`.
-10. Verify the account status again.
-
-### Final verification
-
-For each user, run:
 
 ```bash
-id alice
-id bob
-id charlie
-```
+A service should run under a dedicated user instead of `root` because it follows the **principle of least privilege**.
 
-For each group:
+A dedicated service account has only the permissions it needs to perform its job. If the service is compromised, an attacker has much less access to the system.
 
-```bash
-getent group developers
-getent group dockerusers
-getent group backupusers
+If the service runs as `root`, a vulnerability in that service could potentially give an attacker **full control over the entire system**.
 ```
 
 ---
 
-# Challenge — Least Privilege
 
-Imagine you are running three services:
-
-```text
-web application
-database
-backup service
-```
-
-You have these groups:
-
-```text
-web
-database
-backup
-```
-
-### Goal
-
-Design the group membership so that each service has access only to what it needs.
-
-### Questions
-
-1. Should every service user belong to every group?
-2. Should a web service normally run as `root`?
-3. Why should access be granted through groups instead of giving everyone full permissions?
-4. What could happen if a compromised service runs as `root`?
-
-Write your answers in your notes.
-
----
 
 # Cleanup
 
@@ -674,25 +608,25 @@ sudo groupdel backupusers
 
 Before moving to the next Linux chapter, you should be comfortable with:
 
-- [ ] `whoami`
-- [ ] `id`
-- [ ] `groups`
-- [ ] `getent passwd`
-- [ ] `getent group`
-- [ ] creating users with `adduser`
-- [ ] deleting users with `deluser`
-- [ ] creating groups with `groupadd`
-- [ ] adding users to groups with `usermod -aG`
-- [ ] removing users from groups
-- [ ] understanding primary vs supplementary groups
-- [ ] changing passwords with `passwd`
-- [ ] locking and unlocking accounts
-- [ ] using `sudo`
-- [ ] checking `sudo` permissions with `sudo -l`
-- [ ] switching users with `su`
-- [ ] running commands as another user with `sudo -u`
-- [ ] identifying service accounts
-- [ ] understanding the principle of least privilege
+- [x] `whoami`
+- [x] `id`
+- [x] `groups`
+- [x] `getent passwd`
+- [x] `getent group`
+- [x] creating users with `adduser`
+- [x] deleting users with `deluser`
+- [x] creating groups with `groupadd`
+- [x] adding users to groups with `usermod -aG`
+- [x] removing users from groups
+- [x] understanding primary vs supplementary groups
+- [x] changing passwords with `passwd`
+- [x] locking and unlocking accounts
+- [x] using `sudo`
+- [x] checking `sudo` permissions with `sudo -l`
+- [x] switching users with `su`
+- [x] running commands as another user with `sudo -u`
+- [x] identifying service accounts
+- [x] understanding the principle of least privilege
 
 ## Most Important Command
 
