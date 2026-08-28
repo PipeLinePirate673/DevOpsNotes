@@ -152,13 +152,13 @@ A process can be in different states.
 
 Common states include:
 
-| State | Meaning |
-|---|---|
-| `R` | Running |
-| `S` | Sleeping |
-| `D` | Uninterruptible sleep |
-| `T` | Stopped |
-| `Z` | Zombie |
+| State | Meaning               |
+| ----- | --------------------- |
+| `R`   | Running               |
+| `S`   | Sleeping              |
+| `D`   | Uninterruptible sleep |
+| `T`   | Stopped               |
+| `Z`   | Zombie                |
 
 You can see the process state with:
 
@@ -397,18 +397,18 @@ dominik   3920  1.2  2.1 120000 50000 pts/0    S    22:15   0:03 python app.py
 
 Important columns:
 
-| Column | Meaning |
-|---|---|
-| `USER` | Process owner |
-| `PID` | Process ID |
-| `%CPU` | CPU usage |
-| `%MEM` | Memory usage |
-| `VSZ` | Virtual memory size |
-| `RSS` | Physical RAM used |
-| `TTY` | Terminal |
-| `STAT` | Process state |
-| `START` | Start time |
-| `TIME` | CPU time used |
+| Column    | Meaning                          |
+| --------- | -------------------------------- |
+| `USER`    | Process owner                    |
+| `PID`     | Process ID                       |
+| `%CPU`    | CPU usage                        |
+| `%MEM`    | Memory usage                     |
+| `VSZ`     | Virtual memory size              |
+| `RSS`     | Physical RAM used                |
+| `TTY`     | Terminal                         |
+| `STAT`    | Process state                    |
+| `START`   | Start time                       |
+| `TIME`    | CPU time used                    |
 | `COMMAND` | Command that started the process |
 
 ---
@@ -604,15 +604,15 @@ kill -l
 
 Common signals:
 
-| Signal | Number | Purpose |
-|---|---:|---|
-| `SIGHUP` | 1 | Hangup |
-| `SIGINT` | 2 | Interrupt |
-| `SIGQUIT` | 3 | Quit |
-| `SIGKILL` | 9 | Force termination |
-| `SIGTERM` | 15 | Graceful termination |
-| `SIGSTOP` | 19 | Stop process |
-| `SIGCONT` | 18 | Continue stopped process |
+| Signal    | Number | Purpose                  |
+| --------- | ------:| ------------------------ |
+| `SIGHUP`  | 1      | Hangup                   |
+| `SIGINT`  | 2      | Interrupt                |
+| `SIGQUIT` | 3      | Quit                     |
+| `SIGKILL` | 9      | Force termination        |
+| `SIGTERM` | 15     | Graceful termination     |
+| `SIGSTOP` | 19     | Stop process             |
+| `SIGCONT` | 18     | Continue stopped process |
 
 ---
 
@@ -943,25 +943,25 @@ This tells you that `nginx` is listening on port `80`.
 
 # 32. Useful Process Commands
 
-| Command | Purpose |
-|---|---|
-| `ps` | Show processes |
-| `ps aux` | Show detailed process list |
-| `ps -ef` | Show processes with PPID |
-| `top` | Monitor processes |
-| `htop` | Interactive process monitor |
-| `pgrep` | Find processes by name |
-| `pkill` | Send signals to processes by name |
-| `kill` | Send a signal to a PID |
-| `killall` | Kill processes by name |
-| `jobs` | Show shell jobs |
-| `fg` | Bring a job to foreground |
-| `bg` | Resume a job in background |
-| `pstree` | Show process hierarchy |
-| `nice` | Start a process with a nice value |
-| `renice` | Change process priority |
-| `lsof` | Show open files |
-| `ss` | Show network sockets |
+| Command   | Purpose                           |
+| --------- | --------------------------------- |
+| `ps`      | Show processes                    |
+| `ps aux`  | Show detailed process list        |
+| `ps -ef`  | Show processes with PPID          |
+| `top`     | Monitor processes                 |
+| `htop`    | Interactive process monitor       |
+| `pgrep`   | Find processes by name            |
+| `pkill`   | Send signals to processes by name |
+| `kill`    | Send a signal to a PID            |
+| `killall` | Kill processes by name            |
+| `jobs`    | Show shell jobs                   |
+| `fg`      | Bring a job to foreground         |
+| `bg`      | Resume a job in background        |
+| `pstree`  | Show process hierarchy            |
+| `nice`    | Start a process with a nice value |
+| `renice`  | Change process priority           |
+| `lsof`    | Show open files                   |
+| `ss`      | Show network sockets              |
 
 ---
 
@@ -1158,213 +1158,7 @@ This hierarchy is fundamental to understanding Linux.
 
 ---
 
-# 36. Practice Exercises
 
-## Exercise 1 — Find Your Shell
-
-Find the PID of your current shell:
-
-```bash
-echo $$
-```
-
-Then verify it:
-
-```bash
-ps -p $$
-```
-
----
-
-## Exercise 2 — Background Process
-
-Start:
-
-```bash
-sleep 300 &
-```
-
-Check your jobs:
-
-```bash
-jobs
-```
-
-Find the process:
-
-```bash
-pgrep sleep
-```
-
-Then terminate it:
-
-```bash
-kill PID
-```
-
----
-
-## Exercise 3 — Foreground and Background
-
-Run:
-
-```bash
-sleep 300
-```
-
-Press:
-
-```text
-Ctrl + Z
-```
-
-Check:
-
-```bash
-jobs
-```
-
-Resume it in the background:
-
-```bash
-bg
-```
-
-Bring it back:
-
-```bash
-fg
-```
-
-Terminate it:
-
-```text
-Ctrl + C
-```
-
----
-
-## Exercise 4 — Process Tree
-
-Run:
-
-```bash
-pstree -p
-```
-
-Find:
-
-- PID 1
-- your shell
-- your terminal
-- any programs you started
-
-Try to understand their parent-child relationships.
-
----
-
-## Exercise 5 — Find a Network Process
-
-Run:
-
-```bash
-sudo ss -tulpn
-```
-
-Find a service listening on your machine.
-
-Identify:
-
-- port
-- protocol
-- PID
-- process name
-
----
-
-## Exercise 6 — CPU Usage
-
-Run:
-
-```bash
-top
-```
-
-Find the process using the most CPU.
-
-Then identify it using:
-
-```bash
-ps -fp PID
-```
-
----
-
-# 37. Quick Cheat Sheet
-
-```bash
-# Current shell PID
-echo $$
-
-# Show processes
-ps
-
-# Detailed process list
-ps aux
-
-# Show PID + PPID
-ps -ef
-
-# Find process
-pgrep nginx
-
-# Interactive process monitor
-top
-
-# Better interactive monitor
-htop
-
-# Process tree
-pstree -p
-
-# Start in background
-command &
-
-# Show shell jobs
-jobs
-
-# Bring job to foreground
-fg %1
-
-# Resume stopped job in background
-bg %1
-
-# Send SIGTERM
-kill PID
-
-# Send SIGKILL
-kill -9 PID
-
-# List signals
-kill -l
-
-# Start with lower priority
-nice -n 10 command
-
-# Change priority
-renice 10 -p PID
-
-# Open files
-lsof -p PID
-
-# Network sockets
-ss -tulpn
-
-# Process information
-cat /proc/PID/status
-```
-
----
 
 # Key Takeaways
 
