@@ -22,8 +22,6 @@ sudo adduser bob
 sudo adduser charlie
 ```
 
-
-
 Create these groups:
 
 ```text
@@ -38,12 +36,7 @@ sudo groupadd developers
 sudo groupadd dockerusers
 
 sudo groupadd backupusers
-
 ```
-
-
-
-
 
 ### Group membership
 
@@ -63,8 +56,6 @@ sudo usermod -aG developers,backupusers bob
 sudo usermod -aG developers,dockerusers,backupusers charlie
 ```
 
-
-
 ### Tasks
 
 1. Create all three users. ✅ 
@@ -81,12 +72,21 @@ sudo usermod -aG developers,dockerusers,backupusers charlie
       1. `dockerusers:x:1003:alice,charlie`
    3. `getent group | grep backupusers`
       1. `backupusers:x:1004:bob,charlie`
-6. Set passwords for all three users.
-   1. 
-7. Lock `charlie`.
-8. Verify `charlie`'s account status.
-9. Unlock `charlie`.
-10. Verify the account status again.
+6. Set passwords for all three users. ✅
+   1. `sudo passwd alice`
+   2. `sudo passwd bob`
+   3. `sudo passwd charlie`
+7. Lock `charlie`.✅
+   1. `sudo passwd -l charlie`
+8. Verify `charlie`'s account status. ✅
+   1. `sudo passwd -S charlie`
+      1. `charlie L 2026-08-27 0 99999 7 -1` - L means locked
+9. Unlock `charlie`.  ✅
+   1. `sudo passwd -u charlie`
+
+1. Verify the account status again. ✅
+   1. `sudo passwd -S charlie` 
+      1. `charlie P 2026-08-27 0 99999 7 -1` P - means unlocked
 
 ### Final verification
 
