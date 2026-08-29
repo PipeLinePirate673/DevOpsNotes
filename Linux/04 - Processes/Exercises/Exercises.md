@@ -66,12 +66,20 @@ Display the running processes on your system.
 
 Find:
 
-- your shell
-- the process using the most CPU
-- the process using the most memory
-- PID 1
+- your shell ✅
+  - `ps aux | grep SHELL` or `ps -p $$`
+- the process using the most CPU ✅ 
+  - `ps aux --sort=-%cpu`
+- the process using the most memory ✅
+  - `ps aux --sort=-%mem`
+- PID 1 ✅
+  - `ps -p 1`
 
 Then display the processes in a different format.
+
+```bash
+htop
+```
 
 ### Goal
 
@@ -90,14 +98,29 @@ Learn how to read:
 
 Use a real-time process monitor.
 
+`htop`
+
 Find:
 
-1. The process using the most CPU.
-2. The process using the most memory.
-3. The PID of your shell.
-4. The system load average.
+1. The process using the most CPU. ✅
+   1. `Click on CPU% tab`
+2. The process using the most memory. ✅
+   1. `Click on MEM% tab`
+3. The PID of your shell. ✅
+   1. `Click F4 - Add filter - Look for BASH`
+4. The system load average. ✅
+   1. `In htop there is Load Average: 0.85 0.82 0.64 above Uptime, those are values shown for 1min, 5min and 15min `
 
 Repeat the exercise using an interactive process monitor if available.
+
+```bash
+top
+
+- P → sort by **CPU usage**
+- M → sort by **memory usage**
+- 1 → show individual CPU cores
+- q → quit
+```
 
 ---
 
@@ -105,12 +128,27 @@ Repeat the exercise using an interactive process monitor if available.
 
 Display the process hierarchy.
 
+```bash
+pstree    
+```
+
 Find:
 
-- `systemd`
-- your terminal
-- your shell
-- a program started by your shell
+- `systemd` ✅
+  - `pstree | grep systemd`
+- your terminal ✅
+  - `├─ptyxis─┬─ptyxis-agent─┬─2*[bash]
+     |        |              ├─bash─┬─htop
+     |        │              │      ├─pstree
+     |        │              │      └─top
+     |        │              └─4*[{ptyxis-agent}]
+     |        └─16*[{ptyxis}]`
+- your shell ✅
+  - `ps -p $$`
+- a program started by your shell ✅
+  - `bash─┬─htop
+          ├─pstree
+          └─top`
 
 Draw the relationship:
 
@@ -128,13 +166,33 @@ Understand parent-child process relationships.
 
 ## Exercise 7 — Process Signals
 
-Start a process that runs for several minutes.
+Start a process that runs for several minutes. ✅
 
-Find its PID.
+```bash
+  sleep 700 &
+```
 
-First, terminate it gracefully.
+Find its PID. ✅
 
-Start another process and terminate it forcefully.
+```bash
+pgrep sleep
+```
+
+First, terminate it gracefully. ✅
+
+```bash
+kill 72154
+```
+
+Start another process and terminate it forcefully. ✅
+
+```bash
+ sleep 1000 & 
+
+pgrep sleep
+
+kill -9 72140
+```
 
 ### Goal
 
@@ -143,21 +201,45 @@ Understand the difference between:
 ```text
 SIGTERM
 SIGKILL
+
+
+
+kill sends SIGTERM, giving the process a chance to shut down slowly and clean up resources.
+
+kill -9 sends SIGKILL, which terminates the process immediately without giving it a chance to clean up.
 ```
 
 ---
 
 ## Exercise 8 — Find a Process by Name
 
-Start a process that runs for several minutes.
+Start a process that runs for several minutes. ✅
 
-Find the process by its name.
+```bash
+sleep 300 &
+```
 
-Display its PID and command.
+Find the process by its name. ✅
 
-Then terminate it by name.
+`pgrep sleep`
 
-Verify that it is no longer running.
+
+
+Display its PID and command. ✅
+
+`ps 72140` or `ps -p 72140 -o pid,cmd`
+
+
+
+Then terminate it by name. ✅
+
+`pkill sleep`
+
+
+
+Verify that it is no longer running. ✅
+
+`pgrep sleep`
 
 ### Goal
 
@@ -167,13 +249,21 @@ Learn how to find and manage processes by name.
 
 ## Exercise 9 — Process Priority
 
-Start a CPU-intensive process with a lower priority.
+Start a CPU-intensive process with a lower priority. ✅
 
-Find the process and inspect its nice value.
+`nice -n 10 sleep 300 &`
 
-Change its priority while it is running.
+Find the process and inspect its nice value. ✅
 
-Terminate the process when finished.
+`pgrep sleep`
+
+Change its priority while it is running. ✅
+
+`renice 19 -p 72564`
+
+Terminate the process when finished. ✅
+
+`kill 72564`
 
 ### Goal
 
@@ -183,18 +273,28 @@ Understand the concept of **nice values** and process priority.
 
 ## Exercise 10 — Explore `/proc`
 
-Find the PID of your shell.
+Find the PID of your shell. ✅
 
-Explore its directory inside `/proc`.
+`ps aux | grep $$` or `echo $$`
+
+Explore its directory inside `/proc`. ✅
+
+`ls -l /proc/63698/cwd`
 
 Find and inspect:
 
-- process status
-- command line
-- executable
-- current working directory
-- environment variables
-- memory mappings
+- process status ✅
+  - `cat /proc/63698/status`
+- command line ✅
+  - `cat /proc/63698/cmdline`
+- executable ✅
+  - `ls -l /proc/63698/exe`
+- current working directory ✅
+  - `ls -l /proc/63698/cwd`
+- environment variables ✅
+  - `cat /proc/63698/environ`
+- memory mappings ✅
+  - `cat /proc/63698/maps`
 
 ### Goal
 
