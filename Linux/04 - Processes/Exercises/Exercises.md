@@ -147,6 +147,7 @@ Find:
   - `ps -p $$`
 - a program started by your shell ✅
   - `bash─┬─htop
+    
           ├─pstree
           └─top`
 
@@ -223,19 +224,13 @@ Find the process by its name. ✅
 
 `pgrep sleep`
 
-
-
 Display its PID and command. ✅
 
 `ps 72140` or `ps -p 72140 -o pid,cmd`
 
-
-
 Then terminate it by name. ✅
 
 `pkill sleep`
-
-
 
 Verify that it is no longer running. ✅
 
@@ -306,14 +301,33 @@ Understand how Linux exposes process information through `/proc`.
 
 Choose a running process.
 
+```bash
+pgrep brave
+```
+
 Find all files and resources opened by that process.
 
 Identify:
 
-- regular files
-- shared libraries
-- terminal devices
-- other resources
+- regular files     ✅
+  
+  - `regular files will have REG (REG means a regular file)`
+
+- shared libraries ✅
+  
+  - `shared libraries will have /usr/lib/.. or /lib/...`
+  - `also shown as REG`
+
+- terminal devices ✅
+  
+  - Terminal devices can be found under `/dev/pts/...``
+
+- other resources ✅
+  
+  - `DIR` → directories
+  - `CHR` → character devices
+  - `FIFO` → pipes
+  - `IPv4/IPv6` → network connections
 
 ### Goal
 
@@ -323,16 +337,30 @@ Understand that processes use files and other resources provided by the operatin
 
 ## Exercise 12 — Network Processes
 
-Display the network sockets currently listening on your system.
+Display the network sockets currently listening on your system. ✅
 
-Choose one listening service and identify:
+```bash
+ss -tulpn
+```
 
-- protocol
-- port
-- PID
-- process name
+Choose one listening service and identify: 
 
-Then verify which process owns that port using another tool.
+    Process - ZEN
+
+- protocol ✅
+  - `udp`
+- port ✅
+  - `:59285`
+- PID ✅
+  - `ss -tulpn | grep :59285`
+    - `udp   UNCONN 0      0                              0.0.0.0:59285      0.0.0.0:*    users:(("zen",pid=67170,fd=203))   `
+      - `PID=67170`
+- process name ✅
+  - `zen`
+
+Then verify which process owns that port using another tool. ✅
+
+`lsof -i :59285`
 
 ### Goal
 
@@ -342,19 +370,35 @@ Learn how to identify which process owns a network port.
 
 ## Exercise 13 — Find the Biggest CPU Consumer
 
-Display the processes sorted by CPU usage.
+Display the processes sorted by CPU usage. ✅
+
+`ps aux --sort=-%cpu`
 
 Identify the process using the most CPU.
 
+   `dominik    21651 20.0  4.5 1526509360 701952 ?   Sl   21:37   6:39 /snap/brave/674/opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=10617 --enable-crash-reporter=a4d0f46e-16e1-40c7-b9a0-5ce8f95c5cac, --enable-distillabilit
+d`
+
+
+
+`ps -fp 21651`
+
 Inspect its:
 
-- PID
-- PPID
-- user
-- CPU usage
-- memory usage
-- state
-- command
+- PID  ✅
+  - `21651`
+- PPID ✅
+  - `10630`
+- user ✅
+  - `dominik`
+- CPU usage ✅
+  - `20.0`
+- memory usage ✅
+  - `4.5`
+- state ✅
+  - `Sl`
+- command ✅
+  - `/snap/brave/674/opt/brave.com/brave/brave`
 
 ---
 
@@ -362,38 +406,57 @@ Inspect its:
 
 Display the processes sorted by memory usage.
 
+`ps aux --sort=-%mem`
+
 Identify the process using the most RAM.
+
+`dominik    21651 11.4  5.3 1526509124 824624 ?   Sl   21:37   7:00 /snap/brave/674/opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=10617 --enable-crash-reporter=a4d0f46e-16e1-40c7-b9a0-5ce8f95c5cac, --enable-distillabilit
+d`
 
 Inspect its:
 
-- PID
-- PPID
-- user
-- CPU usage
-- memory usage
-- state
-- command
+- PID ✅ 
+  - `21651`
+- PPID ✅ 
+  - `10630`
+- user ✅
+  - `dominik`
+- CPU usage ✅
+  - `11.4`
+- memory usage ✅
+  - `5.3`
+- state ✅
+  - `Sl`
+- command ✅
+  - `/snap/brave/674/opt/brave.com/brave/brave`
 
 ---
 
 ## Exercise 15 — Troubleshooting Scenario
 
 Imagine that a web application is not responding.
-
 You know that it should be listening on port `8080`.
-
+`lsof -i :8080`
 Investigate the problem.
 
 ### Tasks
 
-1. Check whether anything is listening on port `8080`.
-2. Identify the process.
-3. Find its PID.
-4. Check its CPU and memory usage.
-5. Check its parent process.
-6. Inspect its command line.
-7. Inspect its open files.
-8. If necessary, terminate the process.
+1. Check whether anything is listening on port `8080`. ✅
+   1. `lsof -i :8080`
+2. Identify the process. ✅
+   1. `No process is listening on port 8080.`
+3. Find its PID. ✅
+   1. `No process is listening on port 8080.`
+4. Check its CPU and memory usage. ✅
+   1. `No process is listening on port 8080.`
+5. Check its parent process. ✅
+   1. `No process is listening on port 8080.`
+6. Inspect its command line. ✅
+   1. `No process is listening on port 8080.`
+7. Inspect its open files. ✅
+   1. `No process is listening on port 8080.`
+8. If necessary, terminate the process. ✅
+   1. `No process is listening on port 8080.`
 
 ---
 
@@ -403,22 +466,51 @@ Choose any long-running process on your system.
 
 Investigate it without using `htop`.
 
+`ps aux`
+
+`dominik    22076  1.1  1.7 1518734736 273628 ?   Sl   21:43   1:07 /opt/marktext/marktext`
+
+`ps -fp 22076`
+
+
+
+`dominik@Zenbook:~$ ps -l 22076
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY        TIME CMD
+4 S  1000   22076    5710  1  80   0 - 379684468 poll_s ?      1:11 /opt/marktext/marktext`
+
+
+
 Find:
 
 1. Process name
+   1. `marktext`
 2. PID
+   1. `22076`
 3. PPID
+   1. `5710`
 4. User
+   1. `dominik`
 5. Process state
+   1. `Sl`
 6. CPU usage
+   1. `1.1`
 7. Memory usage
+   1. `1.7`
 8. Nice value
+   1. `0`
 9. Executable path
+   1. `/opt/marktext/marktext`
 10. Working directory
+    1. `ls -l /proc/22076/cwd`
+       1. `lrwxrwxrwx 1 dominik dominik 0 Sep  1 23:29 /proc/22076/cwd -> /home/dominik`
 11. Open files
+    1. `lsof -p 22076`
 12. Network connections
+    1. `ss -nap | grep 22076 -i`
 13. Parent process
+    1. `ps -o ppid= -p 22076` or `ps -fp 5710` -  PID  | or `ps -o pid,ppid,cmd -p 22076`
 14. Child processes
+    1. `pstree -p 22076`
 
 ### Goal
 
@@ -426,91 +518,52 @@ Build the ability to investigate an unknown process using standard Linux tools.
 
 ---
 
-# Mini Project — Process Monitor
 
-Create a simple Bash script called:
-
-```text
-process-monitor.sh
-```
-
-The script should display:
-
-- current date and time
-- hostname
-- current user
-- system load
-- top 5 CPU-consuming processes
-- top 5 memory-consuming processes
-
-Example output:
-
-```text
-========================================
-        Linux Process Monitor
-========================================
-
-Date:
-Hostname:
-User:
-
-Load Average:
-...
-
-Top CPU Processes:
-...
-
-Top Memory Processes:
-...
-
-========================================
-```
-
-### Requirements
-
-- The script must be written in Bash.
-- Do not use `htop`.
-- Make the output easy to read.
-- Use standard Linux utilities.
-
-### Bonus
-
-Add an optional PID argument.
-
-When a PID is provided, the script should display detailed information about that process.
-
-Example:
-
-```text
-./process-monitor.sh PID
-```
-
----
 
 # Final Challenge
 
 Without looking at your notes, answer these questions:
 
 1. What is a PID?
+   1. `Process Identifier`
 2. What is a PPID?
+   1. `Parent process ID`
 3. What is PID 1?
+   1. `MAin procces -  systemd`
 4. What is the difference between a process and a program?
+   1. `A program is code stored on the system, while a process is a running instance of that program.`
 5. What is the difference between foreground and background processes?
+   1. `Background process let's you use terminal while foreground process block as long as it works`
 6. What does `Ctrl + C` do?
+   1. `Terminate/interrup Process`
 7. What does `Ctrl + Z` do?
+   1. `Suspend/Stops process`
 8. What is the difference between `SIGTERM` and `SIGKILL`?
+   1. `Sigterm is an signal which close process gently and give it time to save, sigkill kills process right away`
 9. What does `ps aux` show?
+   1. `All the processes that are running at that moment`
 10. What is `top` used for?
+    1. `Shows running processes and system resource usage in real time.`
 11. What is `pstree` used for?
+    1. `Shows all processes with their parent processes as tree`
 12. What is `/proc`?
+    1. `is a virtual filesystem that provides information about running processes and the Linux system`
 13. What does `lsof` show?
+    1. `Shows which files and other resources are opened by processes. It can also be used to find which process is using a network port`
 14. What does `ss` show?
+    1. `show network sockets and information about network connections and listening ports.`
 15. What is a zombie process?
+    1. `A zombie process is a process that has finished running but still has an entry in the process table`
 16. What is an orphan process?
+    1. `Is an process which parent have been killed but child process still works`
 17. What is a nice value?
+    1. `Nice value determines the priority of a process `
 18. How would you find which process is using port `8080`?
+    1. `lsof -i :8080`
 19. How would you gracefully terminate PID `1234`?
+    1. `kill 1234`
 20. How would you forcefully terminate PID `1234`?
+    1. `kill -9 1234`
 
 ---
 
