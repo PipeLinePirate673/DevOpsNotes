@@ -58,29 +58,125 @@ This additionally tells you that Linux identifies this neighbor as a **router** 
 
 ---
 
-### One important thing
+---
 
-Your earlier entry:
+---
+
+
+
+
+
+
+
+---
+
+---
+
+
+
+# ***<mark>TCP VS UDP</mark>***
+
+---
+
+
+
+### TCP — Transmission Control Protocol
+
+TCP is **connection-oriented**. It establishes a connection between two devices before sending data.
+
+TCP provides:
+
+- Reliable data delivery
+
+- Data ordering
+
+- Error detection
+
+- Retransmission of lost packets
+
+TCP is useful when **data must arrive correctly and completely**.
+
+Examples:
+
+- SSH → TCP port `22`
+
+- HTTP → TCP port `80`
+
+- HTTPS → TCP port `443`
+
+---
+
+### UDP — User Datagram Protocol
+
+UDP is **connectionless**. It sends data without establishing a connection first.
+
+UDP does not guarantee:
+
+- Data delivery
+
+- Data ordering
+
+- Retransmission of lost packets
+
+UDP has less overhead and can be faster than TCP.
+
+UDP is useful when **speed and low latency are more important than reliability**.
+
+Examples:
+
+- DNS → UDP port `53`
+
+- DHCP → UDP ports `67/68`
+
+### Simple comparison
 
 ```text
-192.168.100.1 dev wlo1 lladdr 14:46:58:45:c8:39 REACHABLE
+TCP → Reliable, ordered, connection-oriented
+UDP → Fast, lightweight, connectionless
 ```
 
-**didn't come out of nowhere**. It was probably an entry that you had in the neighbor table a moment earlier. The entry can disappear or change because the neighbor table is dynamic.
+A simple way to remember it:
 
-If you want to see your **gateway** `192.168.100.1` in `ip neigh`, run:
+> **TCP:** "Make sure the data arrives correctly."
+> 
+> **UDP:** "Send the data quickly; don't worry about retransmission."
+
+---
+
+## Listening Port
+
+A **listening port** is a network port on which a program is waiting for incoming connections or traffic.
+
+You can check listening ports with:
 
 ```bash
-ping -c 1 192.168.100.1
-ip neigh
+ss -tulpn
 ```
 
-Linux will then need to resolve the gateway's MAC address using ARP, and you should see something like:
+For example:
 
 ```text
-192.168.100.1 dev wlo1 lladdr 14:46:58:45:c8:39 REACHABLE
+tcp   LISTEN   0   128   0.0.0.0:22   0.0.0.0:*   users:(("sshd",pid=1234,fd=3))
 ```
 
-You can then use this entry to complete Exercise 8.
+This means:
 
-**The most important rule:** when doing exercises like these, first look at the **format of the output**, and then identify the information you need. You don't have to memorize where every piece of information is located.
+- `tcp` → protocol
+
+- `LISTEN` → the program is waiting for incoming connections
+
+- `:22` → listening port
+
+- `sshd` → program using the port
+
+So you can say:
+
+> **SSH is listening on TCP port 22.**
+
+Another example:
+
+```text
+udp   UNCONN   0   0   0.0.0.0:53   0.0.0.0:*
+```
+
+This means that a program is listening for UDP traffic on port `53`, which is commonly used for DNS.

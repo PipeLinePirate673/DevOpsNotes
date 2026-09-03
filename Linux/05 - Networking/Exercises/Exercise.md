@@ -430,14 +430,48 @@ Display listening TCP and UDP sockets.
 ss -tulpn
 ```
 
+```shell
+dominik@Zenbook:~/Pulpit/DevOpsNotes/DevOps Notes$ ss -tulpn
+Netid State  Recv-Q  Send-Q                     Local Address:Port   Peer Address:Port Process                             
+udp   UNCONN 0       0                            224.0.0.251:5353        0.0.0.0:*     users:(("brave",pid=10701,fd=52))  
+udp   UNCONN 0       0                            224.0.0.251:5353        0.0.0.0:*     users:(("brave",pid=10646,fd=247)) 
+udp   UNCONN 0       0                                0.0.0.0:5353        0.0.0.0:*                                        
+udp   UNCONN 0       0                             127.0.0.54:53          0.0.0.0:*                                        
+udp   UNCONN 0       0                          127.0.0.53%lo:53          0.0.0.0:*                                        
+udp   UNCONN 0       0                              127.0.0.1:323         0.0.0.0:*                                        
+udp   UNCONN 0       0                                   [::]:5353           [::]:*                                        
+udp   UNCONN 0       0                                  [::1]:323            [::]:*                                        
+udp   UNCONN 0       0        [fe80::51a2:9770:bb50:3e8]%wlo1:546            [::]:*                                        
+tcp   LISTEN 0       4096                          127.0.0.54:53          0.0.0.0:*                                        
+tcp   LISTEN 0       4096                       127.0.0.53%lo:53          0.0.0.0:*                                        
+tcp   LISTEN 0       128                            127.0.0.1:5939        0.0.0.0:*                                        
+tcp   LISTEN 0       4096                           127.0.0.1:631         0.0.0.0:*                                        
+tcp   LISTEN 0       4096                               [::1]:631            [::]:*     
+```
+
+
+
 Find:
 
-1. One TCP listening port
-2. One UDP listening port, if available
-3. Process name
-4. PID
-5. Local address
-6. Port number
+1. One TCP listening port ✅
+   1. `tcp   LISTEN 0       4096                          127.0.0.54:53          0.0.0.0:*`
+2. One UDP listening port, if available ✅
+   1. `udp   UNCONN 0       0                            224.0.0.251:5353        0.0.0.0:*     users:(("brave",pid=10701,fd=52))`
+3. Process name ✅
+   1. `users:(("brave",pid=10701,fd=52))`
+   2. `So the process name = brave`
+4. PID ✅
+   1. `pid=10701`
+5. Local address ✅
+   1. `224.0.0.251:5353`
+6. Port number ✅
+   1. `5353`
+
+
+
+```
+FOR MORE INFO, PLEASE REFER TO NOTES.MD.
+```
 
 ---
 
