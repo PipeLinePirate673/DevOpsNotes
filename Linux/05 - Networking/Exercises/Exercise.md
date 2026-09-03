@@ -68,9 +68,12 @@ link/ether
 
 Answer:
 
-1. What is the interface name?
-2. What is its MAC address?
-3. Is the interface `UP` or `DOWN`?
+1. What is the interface name? ✅
+   1. `wlo1`
+2. What is its MAC address? ✅
+   1. ` 08:8e:90:b2:45:71`
+3. Is the interface `UP` or `DOWN`? ✅
+   1. `UP`
 
 ---
 
@@ -90,10 +93,32 @@ ping -c 4 127.0.0.1
 
 Find:
 
-1. Interface name
-2. IPv4 address
-3. Interface state
-4. Whether the ping succeeds
+1. Interface name ✅
+   
+   1. `lo`
+
+2. IPv4 address ✅
+   
+   1. `127.0.0.1/8`
+
+3. Interface state ✅
+   
+   1. `UNKNOW`
+
+4. Whether the ping succeeds ✅
+   
+   1. ```bash
+      dominik@Zenbook:~$ ping -c 4 127.0.0.1
+      PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+      64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.050 ms
+      64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.087 ms
+      64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.105 ms
+      64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.105 ms
+      
+      --- 127.0.0.1 ping statistics ---
+      4 packets transmitted, 4 received, 0% packet loss, time 3062ms
+      rtt min/avg/max/mdev = 0.050/0.086/0.105/0.022 ms
+      ```
 
 ---
 
@@ -107,11 +132,19 @@ ip -4 addr
 
 Answer:
 
-1. Interface name
-2. IPv4 address
-3. Network prefix
+1. Interface name ✅
+   
+   1. `wlo1`
 
----
+2. IPv4 address ✅
+   
+   1. `192.168.100.18/24`
+
+3. Network prefix✅
+   
+   1. `/24`
+   
+   ---
 
 ## Exercise 6 — Routing Table
 
@@ -123,10 +156,14 @@ ip route
 
 Find:
 
-1. Default route
-2. Default gateway
-3. Interface used for the default route
-4. Source IP address
+1. Default route ✅
+   1. `default via 192.168.100.1 dev wlo1 proto dhcp src 192.168.100.18 metric 600 `
+2. Default gateway ✅
+   1. `192.168.100.1`
+3. Interface used for the default route ✅
+   1. `dev wlo1`
+4. Source IP address ✅
+   1. `192.168.100.18`
 
 ---
 
@@ -140,10 +177,14 @@ ip route get 8.8.8.8
 
 Identify:
 
-1. Gateway
-2. Network interface
-3. Source IP
-4. Destination IP
+1. Gateway ✅
+   1. `192.168.100.1`
+2. Network interface ✅
+   1. `dev wlo1`
+3. Source IP ✅
+   1. `192.168.100.18`
+4. Destination IP ✅
+   1. `8.8.8.8`
 
 ---
 
