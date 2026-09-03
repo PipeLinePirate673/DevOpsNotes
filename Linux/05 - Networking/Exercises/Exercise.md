@@ -196,12 +196,30 @@ Display the neighbor table.
 ip neigh
 ```
 
+```bash
+dominik@Zenbook:~$ ip neigh
+
+192.168.100.8 dev wlo1 FAILED 
+fe80::1 dev wlo1 lladdr 14:46:58:45:c8:39 router REACHABLE 
+
+```
+
+
+
 Find:
 
-1. At least one local network device
-2. Its IP address
-3. Its MAC address
-4. Its state
+1. At least one local network device ✅
+   1. `fe80::1 dev wlo1`
+2. Its IP address ✅
+   1. `fe80::1`
+3. Its MAC address ✅
+   1. `14:46:58:45:c8:39`
+4. Its state ✅
+   1. `REACHABLE `
+
+```
+For a better understanding of `ip neigh`, please refer to `notes.md`.
+```
 
 ---
 
@@ -241,10 +259,53 @@ ping -c 4 8.8.8.8
 ping -c 4 google.com
 ```
 
+```shell
+dominik@Zenbook:~$ ping -c 4 192.168.100.1
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=4.44 ms
+64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=3.20 ms
+64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=3.26 ms
+64 bytes from 192.168.100.1: icmp_seq=4 ttl=64 time=3.16 ms
+
+--- 192.168.100.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 3.158/3.513/4.435/0.533 ms
+dominik@Zenbook:~$ ping -c 4 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=114 time=16.8 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=114 time=16.4 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=114 time=16.4 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=114 time=16.6 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 16.373/16.557/16.790/0.167 ms
+dominik@Zenbook:~$ ping -c 4 google.com
+PING google.com (142.250.109.102) 56(84) bytes of data.
+64 bytes from zr-in-f102.1e100.net (142.250.109.102): icmp_seq=1 ttl=112 time=11.7 ms
+64 bytes from zr-in-f102.1e100.net (142.250.109.102): icmp_seq=2 ttl=112 time=11.5 ms
+64 bytes from zr-in-f102.1e100.net (142.250.109.102): icmp_seq=3 ttl=112 time=13.1 ms
+64 bytes from zr-in-f102.1e100.net (142.250.109.102): icmp_seq=4 ttl=112 time=13.4 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3003ms
+rtt min/avg/max/mdev = 11.479/12.415/13.368/0.844 ms
+dominik@Zenbook:~$ 
+
+
+```
+
+
+
 Record:
 
 - Does each test succeed?
+  - `Yes each test have succeed`
+
 - What does each test tell you?
+  - `192.168.100.1 tells me that my computer can communicate with the local network and reach my router.`
+  - `8.8.8.8 confirms my computer can access the internet`
+  - `google.com confirms that DNS resolution and Internet connectivity are working correctly.`
 
 ---
 
@@ -262,11 +323,51 @@ Then resolve a domain:
 dig google.com +short
 ```
 
+
+
+```bash
+dominik@Zenbook:~$ resolvectl status
+Global
+         Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: stub
+
+Link 2 (wlo1)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 192.168.100.1
+       DNS Servers: 192.168.100.1
+     Default Route: yes
+
+Link 3 (docker0)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+     Default Route: no
+dominik@Zenbook:~$ dig google.com +short
+142.250.109.139
+142.250.109.102
+142.250.109.113
+142.250.109.100
+142.250.109.138
+142.250.109.101
+
+```
+
+
+
 Find:
 
-1. DNS server
-2. Resolved IP address
-3. Network interface used by the DNS configuration
+1. DNS server ✅
+   1. `DNS Servers: 192.168.100.1`
+2. Resolved IP address ✅
+   1. `***DNS resolves a domain name into an IP address.`***
+   2. `142.250.109.139
+      142.250.109.102
+      142.250.109.113
+      142.250.109.100
+      142.250.109.138
+      142.250.109.101`
+3. Network interface used by the DNS configuration ✅
+   1. `Link 2(wlo1)`
 
 ---
 
@@ -284,11 +385,40 @@ and:
 ping -c 4 google.com
 ```
 
+```shell
+dominik@Zenbook:~$ ping -c 4 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=114 time=16.5 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=114 time=16.3 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=114 time=16.5 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=114 time=16.2 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 16.192/16.391/16.538/0.145 ms
+dominik@Zenbook:~$ ping -c 4 google.com
+PING google.com (142.250.109.101) 56(84) bytes of data.
+64 bytes from zr-in-f101.1e100.net (142.250.109.101): icmp_seq=1 ttl=110 time=12.1 ms
+64 bytes from zr-in-f101.1e100.net (142.250.109.101): icmp_seq=2 ttl=110 time=13.5 ms
+64 bytes from zr-in-f101.1e100.net (142.250.109.101): icmp_seq=3 ttl=110 time=13.4 ms
+64 bytes from zr-in-f101.1e100.net (142.250.109.101): icmp_seq=4 ttl=110 time=13.3 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 12.103/13.074/13.482/0.565 ms
+
+```
+
+
+
 Answer:
 
-1. Does the IP address work?
-2. Does the domain name work?
-3. What would it mean if the IP worked but the domain did not?
+1. Does the IP address work? ✅
+   1. `Yes it does.`
+2. Does the domain name work? ✅
+   1. `Yes it does`
+3. What would it mean if the IP worked but the domain did not? ✅
+   1. `It could mean that my internet connectivity is okay but there could be a problem with DNS resolution`
 
 ---
 
