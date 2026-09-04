@@ -201,10 +201,7 @@ dominik@Zenbook:~$ ip neigh
 
 192.168.100.8 dev wlo1 FAILED 
 fe80::1 dev wlo1 lladdr 14:46:58:45:c8:39 router REACHABLE 
-
 ```
-
-
 
 Find:
 
@@ -291,18 +288,16 @@ PING google.com (142.250.109.102) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3003ms
 rtt min/avg/max/mdev = 11.479/12.415/13.368/0.844 ms
 dominik@Zenbook:~$ 
-
-
 ```
-
-
 
 Record:
 
 - Does each test succeed?
+  
   - `Yes each test have succeed`
 
 - What does each test tell you?
+  
   - `192.168.100.1 tells me that my computer can communicate with the local network and reach my router.`
   - `8.8.8.8 confirms my computer can access the internet`
   - `google.com confirms that DNS resolution and Internet connectivity are working correctly.`
@@ -322,8 +317,6 @@ Then resolve a domain:
 ```bash
 dig google.com +short
 ```
-
-
 
 ```bash
 dominik@Zenbook:~$ resolvectl status
@@ -349,10 +342,7 @@ dominik@Zenbook:~$ dig google.com +short
 142.250.109.100
 142.250.109.138
 142.250.109.101
-
 ```
-
-
 
 Find:
 
@@ -406,10 +396,7 @@ PING google.com (142.250.109.101) 56(84) bytes of data.
 --- google.com ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3005ms
 rtt min/avg/max/mdev = 12.103/13.074/13.482/0.565 ms
-
 ```
-
-
 
 Answer:
 
@@ -449,8 +436,6 @@ tcp   LISTEN 0       4096                           127.0.0.1:631         0.0.0.
 tcp   LISTEN 0       4096                               [::1]:631            [::]:*     
 ```
 
-
-
 Find:
 
 1. One TCP listening port ✅
@@ -466,8 +451,6 @@ Find:
    1. `224.0.0.251:5353`
 6. Port number ✅
    1. `5353`
-
-
 
 ```
 FOR MORE INFO, PLEASE REFER TO NOTES.MD.
@@ -485,18 +468,63 @@ ss -tupn
 
 Choose one `ESTAB` connection.
 
+
+
+```bash
+dominik@Zenbook:~$ ss -tupn
+Netid              State                    Recv-Q               Send-Q                                   Local Address:Port                                Peer Address:Port              Process                                                 
+udp                ESTAB                    0                    0                                  192.168.100.18%wlo1:68                                 192.168.100.1:67                                                                        
+udp                ESTAB                    0                    0                                       192.168.100.18:50039                              188.114.97.11:443                users:(("brave",pid=7925,fd=90))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:54404                             57.144.112.145:443                users:(("brave",pid=7925,fd=127))                      
+tcp                ESTAB                    0                    0                                       192.168.100.18:54410                             57.144.112.145:443                users:(("brave",pid=7925,fd=31))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:54418                             57.144.112.145:443                users:(("brave",pid=7925,fd=73))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:54426                             57.144.112.145:443                users:(("brave",pid=7925,fd=79))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:38718                              140.82.114.25:443                users:(("brave",pid=7925,fd=51))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:38496                               104.18.86.42:443                users:(("brave",pid=7925,fd=63))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:38506                               104.18.86.42:443                users:(("brave",pid=7925,fd=102))                      
+tcp                ESTAB                    0                    0                                       192.168.100.18:55118                             185.125.188.36:443                users:(("gnome-software",pid=5787,fd=41))              
+tcp                CLOSE-WAIT               78                   0                                       192.168.100.18:57328                              50.112.66.242:443                users:(("brave",pid=7925,fd=37))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:42798                              104.18.41.158:443                users:(("brave",pid=7925,fd=57))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:52674                               104.18.32.47:443                users:(("brave",pid=7925,fd=27))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:46842                               104.18.39.21:443                users:(("brave",pid=7925,fd=38))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:58754                              54.189.76.203:443                users:(("brave",pid=7925,fd=45))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:52262                             57.144.112.141:443                users:(("brave",pid=7925,fd=85))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:52270                             57.144.112.141:443                users:(("brave",pid=7925,fd=65))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:53948                             57.144.113.134:443                users:(("brave",pid=7925,fd=30))                       
+tcp                ESTAB                    0                    0                                       192.168.100.18:39928                              146.75.117.91:443                users:(("gnome-software",pid=5787,fd=46))   
+```
+
+`udp                ESTAB                    0                    0                                       192.168.100.18:50039                              188.114.97.11:443                users:(("brave",pid=7925,fd=90))  `
+
 Find:
 
-1. Protocol
-2. State
-3. Local IP
-4. Local port
-5. Remote IP
-6. Remote port
-7. Process name
-8. PID
+1. Protocol ✅
+   1. `UDP`
+2. State ✅
+   1. `ESTAB`
+3. Local IP ✅
+   1. `192.168.100.18`
+4. Local port ✅
+   1. `50039`
+5. Remote IP ✅
+   1. `188.114.97.11`
+6. Remote port ✅
+   1. `443`
+7. Process name ✅
+   1. `brave`
+8. PID ✅
+   1. `pid=7925`
 
 Explain which port is local and which port is remote.
+
+```
+Local port 50039 — is the port used by my computer for this connection.
+Remote port 443 — is the port used by the remote computer or server.
+```
+
+
+
+
 
 ---
 
@@ -518,10 +546,17 @@ Compare the results.
 
 Answer:
 
-1. What does `LISTEN` mean?
-2. What does `ESTAB` mean?
-3. Why can an `ESTAB` connection appear in `ss -tupn` but not in `ss -tulpn`?
-4. What is the difference between a listening port and a local ephemeral port?
+1. **What does `LISTEN` mean?** 
+   `It means that the program is waiting for incoming connections.`
+
+2. **What does `ESTAB` mean?** 
+   `It means that the connection is established.`
+
+3. **Why can an `ESTAB` connection appear in `ss -tupn` but not in `ss -tulpn`?** 
+   `ss -tupn shows active connections, while ss -tulpn shows ports that are waiting for incoming connections.`
+
+4. **What is the difference between a listening port and a local ephemeral port?** 
+   `A listening port is a port where a program waits for incoming connections, while an ephemeral port is a temporary port used by my computer to make outgoing connections.`
 
 ---
 
