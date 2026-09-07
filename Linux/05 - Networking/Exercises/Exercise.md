@@ -468,8 +468,6 @@ ss -tupn
 
 Choose one `ESTAB` connection.
 
-
-
 ```bash
 dominik@Zenbook:~$ ss -tupn
 Netid              State                    Recv-Q               Send-Q                                   Local Address:Port                                Peer Address:Port              Process                                                 
@@ -522,10 +520,6 @@ Local port 50039 — is the port used by my computer for this connection.
 Remote port 443 — is the port used by the remote computer or server.
 ```
 
-
-
-
-
 ---
 
 ## Exercise 14 — Listening vs Established
@@ -546,16 +540,16 @@ Compare the results.
 
 Answer:
 
-1. **What does `LISTEN` mean?** 
+1. **What does `LISTEN` mean?**  ✅
    `It means that the program is waiting for incoming connections.`
 
-2. **What does `ESTAB` mean?** 
+2. **What does `ESTAB` mean?**  ✅
    `It means that the connection is established.`
 
-3. **Why can an `ESTAB` connection appear in `ss -tupn` but not in `ss -tulpn`?** 
+3. **Why can an `ESTAB` connection appear in `ss -tupn` but not in `ss -tulpn`?**  ✅
    `ss -tupn shows active connections, while ss -tulpn shows ports that are waiting for incoming connections.`
 
-4. **What is the difference between a listening port and a local ephemeral port?** 
+4. **What is the difference between a listening port and a local ephemeral port?**  ✅
    `A listening port is a port where a program waits for incoming connections, while an ephemeral port is a temporary port used by my computer to make outgoing connections.`
 
 ---
@@ -568,16 +562,36 @@ Choose a port that is currently in use.
 lsof -i :<PORT>
 ```
 
+```bash
+lsof -i :5353
+```
+
+```bash
+dominik@Zenbook:~$ lsof -i :5353
+COMMAND  PID    USER FD   TYPE DEVICE SIZE/OFF NODE NAME
+brave   7925 dominik 23u  IPv4  44301      0t0  UDP mdns.mcast.net:mdns 
+```
+
 Find:
 
-1. Process name
-2. PID
-3. User
-4. Protocol
-5. Local address
-6. Local port
-7. Remote address
-8. Remote port
+1. Process name ✅
+   1. `brave`
+2. PID ✅
+   1. `7925`
+3. User ✅
+   1. `dominik`
+4. Protocol ✅
+   1. `ss -tulpn | grep :5353`
+      1. `udp   UNCONN 0      0                          224.0.0.251:5353      0.0.0.0:*    users:(("brave",pid=7925,fd=23))`
+         1. `udp`
+5. Local address ✅
+   1. `224.0.0.251`
+6. Local port ✅
+   1. `:5353`
+7. Remote address ✅
+   1. `0.0.0.0`
+8. Remote port ✅
+   1. `:*`
 
 ---
 
@@ -597,10 +611,14 @@ ss -tulpn | grep :8080
 
 Answer:
 
-1. Is anything listening on port `8080`?
-2. If yes, what is the process?
-3. What is its PID?
-4. If nothing is using the port, explain what that means.
+1. Is anything listening on port `8080`? ✅
+   1. `No`
+2. If yes, what is the process? ✅
+   1. `There is no process running on 8080`
+3. What is its PID? ✅
+   1. `There is no process running on 8080`
+4. If nothing is using the port, explain what that means. ✅
+   1. `It means there is no process listening on port 8080.`
 
 ---
 
@@ -614,14 +632,34 @@ ip -s link
 
 Choose one active interface.
 
+```shell
+2: wlo1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DORMANT group default qlen 1000
+    link/ether 08:8e:90:b2:45:71 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+     758099923  608776      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+      37958548   94708      0       0       0       0 
+    altname wlp0s20f3
+    altname wlx088e90b24571
+
+```
+
+
+
 Find:
 
-1. RX packets
-2. RX errors
-3. RX dropped packets
-4. TX packets
-5. TX errors
-6. TX dropped packets
+1. RX packets ✅
+   1. `608776`
+2. RX errors ✅
+   1. `0`
+3. RX dropped packets ✅
+   1. `0`
+4. TX packets ✅
+   1. `94708`
+5. TX errors ✅
+   1. `0`
+6. TX dropped packets ✅
+   1. `0`
 
 ---
 
@@ -633,12 +671,26 @@ Check NetworkManager devices.
 nmcli device status
 ```
 
+```shell
+dominik@Zenbook:~$ nmcli device status
+DEVICE        TYPE      STATE                   CONNECTION     
+wlo1          wifi      połączono               NETIASPOT-kpQ4 
+lo            loopback  connected (externally)  lo             
+docker0       bridge    connected (externally)  docker0  
+```
+
+
+
 Find:
 
-1. Device name
-2. Device type
-3. Connection state
-4. Connection name
+1. Device name ✅
+   1. `wlo1`
+2. Device type ✅
+   1. `wifi`
+3. Connection state ✅
+   1. `Connected`
+4. Connection name ✅
+   1. `NETIASPOT-kpQ4`
 
 Then run:
 
@@ -646,7 +698,22 @@ Then run:
 nmcli connection show
 ```
 
+```shell
+dominik@Zenbook:~$ nmcli connection show
+NAME            UUID                                  TYPE      DEVICE  
+NETIASPOT-kpQ4  03677d6f-01c8-4a9d-bccb-73315a3fcafc  wifi      wlo1    
+lo              8c3b5a9e-bff3-4a26-9369-f50b97553805  loopback  lo      
+docker0         2cabda3f-b3bd-4083-adba-c3016b4eca59  bridge    docker0 
+Internet-3      333de34d-3583-4abc-9407-6d92f6a6c62f  wifi      --      
+iPhone          423b4e4b-97a1-4cc4-9e67-41e18b697a57  wifi      --      
+
+```
+
 Identify the active connection.
+
+`NETIASPOT-kpQ4  03677d6f-01c8-4a9d-bccb-73315a3fcafc  wifi      wlo1    `
+
+
 
 ---
 
@@ -662,17 +729,67 @@ Start with:
 ip link
 ```
 
+```bash
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: wlo1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DORMANT group default qlen 1000
+    link/ether 08:8e:90:b2:45:71 brd ff:ff:ff:ff:ff:ff
+    altname wlp0s20f3
+    altname wlx088e90b24571
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether ee:48:e1:91:a2:32 brd ff:ff:ff:ff:ff:ff
+
+```
+
+
+
 Then:
 
 ```bash
 ip addr
 ```
 
+```bash
+dominik@Zenbook:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: wlo1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 08:8e:90:b2:45:71 brd ff:ff:ff:ff:ff:ff
+    altname wlp0s20f3
+    altname wlx088e90b24571
+    inet 192.168.100.18/24 brd 192.168.100.255 scope global dynamic noprefixroute wlo1
+       valid_lft 80396sec preferred_lft 80396sec
+    inet6 fe80::51a2:9770:bb50:3e8/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether ee:48:e1:91:a2:32 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+
+
+```
+
+
+
 Then:
 
 ```bash
 ip route
 ```
+
+```bash
+dominik@Zenbook:~$ ip route
+default via 192.168.100.1 dev wlo1 proto dhcp src 192.168.100.18 metric 600 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+192.168.100.0/24 dev wlo1 proto kernel scope link src 192.168.100.18 metric 600 
+
+```
+
+
 
 Then test:
 
@@ -694,15 +811,73 @@ Finally check:
 resolvectl status
 ```
 
+```bash
+dominik@Zenbook:~$ resolvectl status
+Global
+         Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: stub
+
+Link 2 (wlo1)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 192.168.100.1
+       DNS Servers: 192.168.100.1
+     Default Route: yes
+
+Link 3 (docker0)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+     Default Route: no
+
+```
+
+
+
 Determine:
 
-1. Is the interface up?
-2. Does it have an IP address?
-3. Is there a default gateway?
-4. Can the machine reach the gateway?
-5. Can it reach the Internet by IP?
-6. Does DNS work?
-7. Where is the problem?
+1. Is the interface up? ✅
+   1. `yes`
+2. Does it have an IP address? ✅
+   1. `192.168.100.18`
+3. Is there a default gateway? ✅
+   1. `default via 192.168.100.1`
+4. Can the machine reach the gateway? ✅
+   1. `yes`
+      1. PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+         64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=3.23 ms
+         64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=1.49 ms
+         64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=3.19 ms
+         64 bytes from 192.168.100.1: icmp_seq=4 ttl=64 time=2.05 ms
+         
+         --- 192.168.100.1 ping statistics ---
+         4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+         rtt min/avg/max/mdev = 1.489/2.490/3.232/0.747 ms
+5. Can it reach the Internet by IP? ✅
+   1. `yes`
+      1. dominik@Zenbook:~$ ping -c 4 8.8.8.8
+         PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+         64 bytes from 8.8.8.8: icmp_seq=1 ttl=114 time=16.8 ms
+         64 bytes from 8.8.8.8: icmp_seq=2 ttl=114 time=16.3 ms
+         64 bytes from 8.8.8.8: icmp_seq=3 ttl=114 time=17.0 ms
+         64 bytes from 8.8.8.8: icmp_seq=4 ttl=114 time=16.6 ms
+         
+         --- 8.8.8.8 ping statistics ---
+         4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+         rtt min/avg/max/mdev = 16.315/16.694/17.028/0.267 ms
+6. Does DNS work? ✅
+   1. `yes`
+      1. dominik@Zenbook:~$ ping -c 4 google.com
+         PING google.com (142.251.98.113) 56(84) bytes of data.
+         64 bytes from nt-in-f113.1e100.net (142.251.98.113): icmp_seq=1 ttl=110 time=15.2 ms
+         64 bytes from nt-in-f113.1e100.net (142.251.98.113): icmp_seq=2 ttl=110 time=16.6 ms
+         64 bytes from nt-in-f113.1e100.net (142.251.98.113): icmp_seq=3 ttl=110 time=16.9 ms
+         64 bytes from nt-in-f113.1e100.net (142.251.98.113): icmp_seq=4 ttl=110 time=16.8 ms
+         
+         --- google.com ping statistics ---
+         4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+         rtt min/avg/max/mdev = 15.168/16.377/16.928/0.705 ms
+7. Where is the problem? ✅
+   1. `There is no problem`
 
 ---
 
@@ -718,135 +893,56 @@ Use:
 ss -tulpn
 ```
 
+```bash
+dominik@Zenbook:~$ ss -tulpn
+Netid  State   Recv-Q  Send-Q                     Local Address:Port     Peer Address:Port  Process                              
+udp    UNCONN  0       0                            224.0.0.251:5353          0.0.0.0:*      users:(("brave",pid=12584,fd=27))   
+udp    UNCONN  0       0                            224.0.0.251:5353          0.0.0.0:*      users:(("brave",pid=12510,fd=301))  
+udp    UNCONN  0       0                                0.0.0.0:5353          0.0.0.0:*                                          
+udp    UNCONN  0       0                             127.0.0.54:53            0.0.0.0:*                                          
+udp    UNCONN  0       0                          127.0.0.53%lo:53            0.0.0.0:*                                          
+udp    UNCONN  0       0                              127.0.0.1:323           0.0.0.0:*                                          
+udp    UNCONN  0       0        [fe80::51a2:9770:bb50:3e8]%wlo1:546              [::]:*                                          
+udp    UNCONN  0       0                                   [::]:5353             [::]:*                                          
+udp    UNCONN  0       0                                  [::1]:323              [::]:*                                          
+tcp    LISTEN  0       4096                           127.0.0.1:631           0.0.0.0:*                                          
+tcp    LISTEN  0       4096                       127.0.0.53%lo:53            0.0.0.0:*                                          
+tcp    LISTEN  0       4096                          127.0.0.54:53            0.0.0.0:*                                          
+tcp    LISTEN  0       128                            127.0.0.1:5939          0.0.0.0:*                                          
+tcp    LISTEN  0       4096                               [::1]:631              [::]:*    
+```
+
+
+
 and:
 
 ```bash
 lsof -i :8080
 ```
 
-Find:
-
-1. Is port `8080` listening?
-2. Which process is using it?
-3. What is its PID?
-4. What protocol is being used?
-5. What local address is it listening on?
-6. What does `0.0.0.0:8080` mean?
-7. What does `127.0.0.1:8080` mean?
-
----
-
-# Challenge 1 — Identify Your Network
-
-Without looking at previous exercises, find:
-
-1. Active network interface
-2. Interface type
-3. MAC address
-4. IPv4 address
-5. IPv6 address
-6. Default gateway
-7. Default route
-8. DNS server
-
-Useful commands:
-
 ```bash
-ip -br addr
-ip link
-ip route
-resolvectl status
+dominik@Zenbook:~$ lsof -i :8080
+dominik@Zenbook:~$ 
 ```
 
----
 
-# Challenge 2 — Investigate an Active Connection
-
-Run:
-
-```bash
-ss -tupn
-```
-
-Choose one active `ESTAB` connection.
-
-Investigate:
-
-1. Process name
-2. PID
-3. Protocol
-4. Local IP
-5. Local port
-6. Remote IP
-7. Remote port
-8. Connection state
-
-Then explain:
-
-> Why is the local port different from the remote port?
-
----
-
-# Challenge 3 — Port Investigation
-
-Choose any active connection from:
-
-```bash
-ss -tupn
-```
-
-Then investigate its process.
-
-Use:
-
-```bash
-ps -fp <PID>
-```
-
-and:
-
-```bash
-lsof -p <PID>
-```
 
 Find:
 
-1. Process name
-2. PID
-3. User
-4. Parent PID
-5. CPU usage
-6. Memory usage
-7. Command
-8. Open files
-9. Network connections
-
----
-
-# Final Challenge — Network Investigation
-
-Without looking at your notes, answer these questions:
-
-1. What is a network interface?
-2. What is a MAC address?
-3. What is an IP address?
-4. What is the difference between IPv4 and IPv6?
-5. What is `127.0.0.1`?
-6. What is the loopback interface?
-7. What is a default gateway?
-8. What is a routing table?
-9. What does `ip route` show?
-10. What does `ping` test?
-11. What is DNS?
-12. What does `dig` do?
-13. What is a port?
-14. What is the difference between TCP and UDP?
-15. What does `ss` show?
-16. What does `LISTEN` mean?
-17. What does `ESTAB` mean?
-18. What does `lsof -i :8080` do?
-19. What is an ephemeral port?
-20. How would you troubleshoot a Linux machine that cannot access the Internet?
+1. Is port `8080` listening? ✅
+   1. `No`
+2. Which process is using it? ✅
+   1. `There is no process using port :8080`
+3. What is its PID? ✅
+   1. `There is no process using port :8080`
+4. What protocol is being used? ✅
+   1. `No protocol is being used because nothing is listening on port 8080.`
+5. What local address is it listening on? ✅
+   1. `There is no process using port :8080`
+6. What does `0.0.0.0:8080` mean? ✅
+   1. `It means the service is listening on port 8080 on all IPv4 network interfaces.`
+7. What does `127.0.0.1:8080` mean? ✅
+   1. `It means the service is listening on port 8080 only on the local machine (localhost).`
 
 ---
 
